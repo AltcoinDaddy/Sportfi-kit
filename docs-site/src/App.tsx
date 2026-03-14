@@ -50,7 +50,7 @@ function App() {
              <Leaf className="text-emerald-600 w-5 h-5" />
              <span className="font-bold">SportFi Kit</span>
           </div>
-          <p className="text-slate-500 text-sm">© 2026 Chiliz Chain. Built for Sports & Fan Engagement.</p>
+          <p className="text-slate-500 text-sm">© 2026. Built for Sports & Fan Engagement.</p>
         </div>
       </footer>
     </div>
