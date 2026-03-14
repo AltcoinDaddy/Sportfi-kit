@@ -1,18 +1,15 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.usePythSportsFeed = void 0;
-const react_1 = require("react");
+import { useState, useEffect, useCallback } from 'react';
 /**
  * Hook to fetch real-time sports feed data using Pyth Network oracles.
  * Optimized for Chiliz Chain mini-apps.
  *
  * @param priceFeedId The Pyth Price Feed ID
  */
-const usePythSportsFeed = (priceFeedId) => {
-    const [data, setData] = (0, react_1.useState)(null);
-    const [isLoading, setIsLoading] = (0, react_1.useState)(true);
-    const [error, setError] = (0, react_1.useState)(null);
-    const fetchData = (0, react_1.useCallback)(async () => {
+export const usePythSportsFeed = (priceFeedId) => {
+    const [data, setData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const fetchData = useCallback(async () => {
         setIsLoading(true);
         setError(null);
         try {
@@ -32,7 +29,7 @@ const usePythSportsFeed = (priceFeedId) => {
             setIsLoading(false);
         }
     }, [priceFeedId]);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         fetchData();
     }, [fetchData]);
     return {
@@ -43,4 +40,3 @@ const usePythSportsFeed = (priceFeedId) => {
         refresh: fetchData
     };
 };
-exports.usePythSportsFeed = usePythSportsFeed;

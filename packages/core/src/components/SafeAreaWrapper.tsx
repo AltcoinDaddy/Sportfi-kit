@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMiniAppContext } from '../provider/SportFiKitProvider';
+import { useMiniAppContext } from '../provider/SportFiKitProvider.js';
 
 /**
  * SafeAreaWrapper - Handles layout padding for notched mobile devices in Socios/Telegram browsers.

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Share2 } from 'lucide-react';
-import { detectSociosBrowser } from '../utils/detectSociosBrowser';
+import { detectSociosBrowser } from '../utils/detectSociosBrowser.js';
 
 /**
  * ShareToSociosButton - Specialized button to share dApp content within Socios.

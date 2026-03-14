@@ -1,6 +1,6 @@
 import React from 'react';
 import { X } from 'lucide-react';
-import { closeSociosMiniApp } from '../utils/detectSociosBrowser';
+import { closeSociosMiniApp } from '../utils/detectSociosBrowser.js';
 
 /**
  * CloseMiniAppButton - Standard 'X' button to exit the mini-app environment.

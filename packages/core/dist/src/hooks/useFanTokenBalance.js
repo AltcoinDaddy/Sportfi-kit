@@ -1,14 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useFanTokenBalance = void 0;
-const wagmi_1 = require("wagmi");
+import { useBalance, useAccount } from 'wagmi';
 /**
  * Hook to fetch the balance of a specific Fan Token for the connected user on Chiliz Chain.
  * @param tokenAddress The contract address of the Fan Token.
  */
-const useFanTokenBalance = (tokenAddress) => {
-    const { address } = (0, wagmi_1.useAccount)();
-    const { data, isLoading, isError, error } = (0, wagmi_1.useBalance)({
+export const useFanTokenBalance = (tokenAddress) => {
+    const { address } = useAccount();
+    const { data, isLoading, isError, error } = useBalance({
         address,
         token: tokenAddress,
     });
@@ -21,4 +18,3 @@ const useFanTokenBalance = (tokenAddress) => {
         error,
     };
 };
-exports.useFanTokenBalance = useFanTokenBalance;

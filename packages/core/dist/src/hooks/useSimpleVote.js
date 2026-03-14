@@ -1,16 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useSimpleVote = void 0;
-const wagmi_1 = require("wagmi");
+import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 /**
  * Hook to interact with the SimpleVote contract on Chiliz Chain.
  * Optimized for Socios.com Wallet Browser and high-concurrency environments.
  *
  * @param contractAddress The address of the SimpleVote contract
  */
-const useSimpleVote = (contractAddress) => {
-    const { writeContract: vote, data: hash, isPending: isSubmitting, isError: isSubmitError, error: submitError } = (0, wagmi_1.useWriteContract)();
-    const { isLoading: isConfirming, isSuccess: isConfirmed } = (0, wagmi_1.useWaitForTransactionReceipt)({
+export const useSimpleVote = (contractAddress) => {
+    const { writeContract: vote, data: hash, isPending: isSubmitting, isError: isSubmitError, error: submitError } = useWriteContract();
+    const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
         hash,
     });
     const submitVote = async (optionId) => {
@@ -42,4 +39,3 @@ const useSimpleVote = (contractAddress) => {
         txHash: hash
     };
 };
-exports.useSimpleVote = useSimpleVote;
