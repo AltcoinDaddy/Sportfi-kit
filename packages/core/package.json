@@ -1,6 +1,6 @@
 {
   "name": "sportfi-kit",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chiliz/sportfi-kit.git"
@@ -11,15 +11,16 @@
   "homepage": "https://www.sportfikit.online",
   "description": "SportFi Kit - Modern React component library + CLI for building fan engagement mini-apps on Chiliz Chain.",
   "type": "module",
-  "main": "./dist/src/index.js",
-  "module": "./dist/src/index.js",
-  "types": "./dist/src/index.d.ts",
+  "main": "dist/src/index.js",
+  "module": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
       "import": "./dist/src/index.js",
       "default": "./dist/src/index.js"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "bin": {
     "sportfi-kit": "./dist/cli/index.js"
