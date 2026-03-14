@@ -76,7 +76,7 @@ Available templates:
 ## Documentation
 
 For full API reference, component guides, and Socios integration tips, visit our documentation site:
-**[sportfikit.online](https://sportfikit.online)**
+**[www.sportfikit.online](https://www.sportfikit.online)**
 
 ## Contributing
 

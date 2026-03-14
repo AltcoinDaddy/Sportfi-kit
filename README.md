@@ -46,7 +46,7 @@ npm run dev --workspace=sportfi-kit-docs
 
 ## Documentation
 
-The live documentation is available at **[sportfikit.online](https://sportfikit.online)**.
+The live documentation is available at **[www.sportfikit.online](https://www.sportfikit.online)**.
 
 ## Contributing
 
