@@ -15,7 +15,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.0.1",
-    "sportfi-kit": "1.0.8"
+    "sportfi-kit": "file:../packages/core"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.1",
