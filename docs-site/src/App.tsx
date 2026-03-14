@@ -26,7 +26,7 @@ function App() {
               <a href="#quickstart" className="text-sm font-medium text-slate-600 hover:text-emerald-600 transition-colors">Quickstart</a>
               <a href="#examples" className="text-sm font-medium text-slate-600 hover:text-emerald-600 transition-colors">Examples</a>
               <a href="https://www.sportfikit.online" className="text-sm font-medium text-slate-600 hover:text-emerald-600 transition-colors">API Reference</a>
-              <a href="https://github.com/chiliz/sportfi-kit" className="bg-emerald-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-all shadow-sm">Get Started</a>
+              <a href="https://github.com/AltcoinDaddy/Sportfi-kit" className="bg-emerald-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-all shadow-sm">Get Started</a>
             </div>
           </div>
         </div>
