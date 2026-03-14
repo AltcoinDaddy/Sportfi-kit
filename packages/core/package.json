@@ -1,6 +1,6 @@
 {
   "name": "sportfi-kit",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "SportFi Kit - Modern React component library + CLI for building fan engagement mini-apps on Chiliz Chain.",
   "main": "./dist/src/index.js",
   "module": "./dist/src/index.mjs",
