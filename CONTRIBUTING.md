@@ -55,4 +55,14 @@ npm run dev --workspace=sportfi-kit-docs
 - Write clean, documented, and reusable React components.
 - Ensure all components are responsive and follow the SportFi aesthetic.
 
+## Deployment
+
+### Documentation Site
+
+The documentation site is hosted on Vercel. 
+
+- **Automated Deployments**: Every push to `main` triggers a production deployment. Pull requests trigger preview deployments.
+- **Manual Deploys**: If you have access to the Vercel project, you can trigger manual builds using the Vercel CLI or Dashboard.
+- **Configuration**: The deployment settings are managed in the root [vercel.json](vercel.json).
+
 License: MIT

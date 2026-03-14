@@ -44,6 +44,10 @@ Run the documentation site locally:
 npm run dev --workspace=sportfi-kit-docs
 ```
 
+## Documentation
+
+The live documentation is available at **[sportfikit.online](https://sportfikit.online)**.
+
 ## Contributing
 
 Contributions are welcome! Please see our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) for more information.

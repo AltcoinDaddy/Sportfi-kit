@@ -76,7 +76,7 @@ Available templates:
 ## Documentation
 
 For full API reference, component guides, and Socios integration tips, visit our documentation site:
-**[docs.sportfi.kit](https://localhost:5173)** (Local Preview)
+**[sportfikit.online](https://sportfikit.online)**
 
 ## Contributing
 
