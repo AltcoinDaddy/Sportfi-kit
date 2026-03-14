@@ -3,6 +3,7 @@ export * from './hooks/useSportFiConnect.js';
 export * from './hooks/useFanTokenBalance.js';
 export * from './hooks/useSimpleVote.js';
 export * from './hooks/usePythSportsFeed.js';
+export * from './components/PollCard.js';
 export * from './components/ConnectButton.js';
 export * from './components/FanTokenGate.js';
 export * from './components/PredictionCard.js';

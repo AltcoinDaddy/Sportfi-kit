@@ -1,158 +1,59 @@
 import { motion } from 'framer-motion';
-import { Lock, Vote, ChevronRight, Wallet, CheckCircle2, Trophy } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
+import { PredictionCard, FanTokenGate, PollCard } from 'sportfi-kit';
 
 const PredictionScreen = () => (
   <div className="h-full bg-slate-50 flex flex-col">
-    <div className="bg-emerald-600 p-5 text-white">
-      <div className="flex justify-between items-center mb-6">
-        <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center"><Trophy size={14} /></div>
-        <div className="text-[10px] font-black tracking-[0.2em] uppercase opacity-80">Live Match</div>
-        <div className="w-8 h-8 rounded-xl bg-white/20" />
-      </div>
-      <div className="flex justify-around items-center py-2">
-        <div className="text-center group-hover:scale-105 transition-transform">
-          <div className="w-14 h-14 bg-white rounded-2xl mb-3 mx-auto shadow-xl flex items-center justify-center text-slate-900 font-black text-xs">ACM</div>
-          <div className="text-[10px] font-black uppercase tracking-wider">Milan</div>
-        </div>
-        <div className="flex flex-col items-center">
-          <div className="text-3xl font-black mb-1">2 - 1</div>
-          <div className="px-2 py-0.5 bg-emerald-500 rounded-full text-[8px] font-bold animate-pulse">72'</div>
-        </div>
-        <div className="text-center group-hover:scale-105 transition-transform">
-          <div className="w-14 h-14 bg-white rounded-2xl mb-3 mx-auto shadow-xl flex items-center justify-center text-slate-900 font-black text-xs">INT</div>
-          <div className="text-[10px] font-black uppercase tracking-wider">Inter</div>
-        </div>
-      </div>
-    </div>
-    <div className="p-6 flex-1">
-      <div className="text-xs font-black text-slate-400 uppercase tracking-[0.1em] mb-4">Match Winner</div>
-      <div className="grid grid-cols-3 gap-3 mb-8">
-        {[ {t: 'Home', o: '2.10'}, {t: 'Draw', o: '3.45'}, {t: 'Away', o: '3.80'} ].map((opt, i) => (
-          <motion.div 
-            key={i} 
-            whileHover={{ y: -2 }}
-            className={`p-3 rounded-2xl border text-center transition-all cursor-pointer ${i === 0 ? 'bg-emerald-600 border-emerald-600 text-white shadow-lg shadow-emerald-200' : 'bg-white border-slate-100 text-slate-900 shadow-sm'}`}
-          >
-            <div className={`text-[9px] font-bold mb-1 uppercase ${i === 0 ? 'text-emerald-100' : 'text-slate-400'}`}>{opt.t}</div>
-            <div className="text-sm font-black italic">{opt.o}</div>
-          </motion.div>
-        ))}
-      </div>
-      <motion.button 
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="w-full bg-slate-900 text-white rounded-2xl py-4 font-black text-sm shadow-2xl flex items-center justify-center gap-2 group/btn"
-      >
-        Predict Now <ChevronRight size={18} className="group-hover/btn:translate-x-1 transition-transform text-emerald-400" />
-      </motion.button>
-    </div>
+    <PredictionCard 
+      className="h-full border-none shadow-none rounded-none"
+      homeTeam={{ name: 'Milan', symbol: 'ACM', score: 2 }}
+      awayTeam={{ name: 'Inter', symbol: 'INT', score: 1 }}
+      matchStatus="72'"
+      isLive={true}
+      predictionTitle="Match Winner"
+      options={[
+        { label: 'Home', odds: '2.10' },
+        { label: 'Draw', odds: '3.45' },
+        { label: 'Away', odds: '3.80' }
+      ]}
+      onSelect={(label) => console.log('Selected:', label)}
+    />
   </div>
 );
 
 const GateScreen = () => (
   <div className="h-full bg-slate-900 flex flex-col text-white relative overflow-hidden">
-    <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-emerald-600/20 to-transparent pointer-events-none" />
-    <div className="p-8 pt-16 flex-1 flex flex-col items-center text-center relative z-10">
-      <motion.div 
-        animate={{ rotate: [0, 5, -5, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="w-24 h-24 bg-emerald-500/10 rounded-[2rem] flex items-center justify-center mb-10 border border-emerald-500/20 shadow-[0_0_50px_rgba(16,185,129,0.1)]"
-      >
-        <Lock className="text-emerald-400" size={40} />
-      </motion.div>
-      <h4 className="text-2xl font-black mb-3 tracking-tight">Locker Room</h4>
-      <p className="text-slate-400 text-sm mb-10 leading-relaxed font-medium">
-        Hold <span className="text-white font-bold">$ACM</span> to unlock exclusive pre-match footage.
-      </p>
-      
-      <div className="w-full bg-slate-800/80 backdrop-blur-md rounded-3xl p-6 border border-slate-700/50 mb-10 text-left">
-        <div className="flex items-center gap-4 mb-5">
-          <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 font-black text-xs shadow-xl">ACM</div>
-          <div className="flex-1">
-            <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Tokens Required</div>
-            <div className="text-lg font-black tracking-tight">10.0 <span className="text-xs text-slate-500 font-medium ml-1">ACM</span></div>
-          </div>
+    <FanTokenGate
+      tokenAddress="0x..."
+      tokenSymbol="ACM"
+      minBalance={10}
+      label="Locker Room"
+      className="h-full border-none rounded-none"
+    >
+      <div className="p-8 flex flex-col items-center justify-center h-full">
+        <div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mb-6">
+          <CheckCircle2 size={40} className="text-white" />
         </div>
-        <div className="h-2 w-full bg-slate-700/50 rounded-full overflow-hidden mb-3">
-          <motion.div 
-            initial={{ width: 0 }}
-            whileInView={{ width: '32%' }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            className="h-full bg-emerald-500 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.5)]" 
-          />
-        </div>
-        <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider">
-          <span className="text-slate-500">3.2 Owned</span>
-          <span className="text-emerald-400">32% Access</span>
-        </div>
+        <h4 className="text-xl font-bold mb-2">Access Granted</h4>
+        <p className="text-slate-400 text-sm">Welcome to the Locker Room.</p>
       </div>
-
-      <motion.button 
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="w-full bg-white text-slate-900 rounded-2xl py-4 font-black text-sm flex items-center justify-center gap-2 mb-6 shadow-xl"
-      >
-        <Wallet size={18} /> Connect Wallet
-      </motion.button>
-      <button className="text-emerald-400 text-xs font-black uppercase tracking-[0.2em] hover:opacity-80 transition-opacity">Buy ACM Tokens</button>
-    </div>
+    </FanTokenGate>
   </div>
 );
 
 const PollScreen = () => (
   <div className="h-full bg-white flex flex-col">
-    <div className="p-6 border-b border-slate-50 bg-slate-50/30">
-      <div className="flex items-center gap-2 mb-2">
-        <Vote className="text-emerald-600" size={18} />
-        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Match Poll</span>
-      </div>
-      <h4 className="text-lg font-black text-slate-900 tracking-tight leading-tight">Who was your MVP for the Derby?</h4>
-    </div>
-    <div className="p-6 flex-1 space-y-4">
-      {[
-        { n: 'Rafael Leão', v: 45, s: true },
-        { n: 'Lautaro Martínez', v: 28, s: false },
-        { n: 'Mike Maignan', v: 15, s: false }
-      ].map((opt, i) => (
-        <motion.div 
-          key={i} 
-          whileHover={{ x: 4 }}
-          className={`p-4 rounded-2xl border relative overflow-hidden transition-all ${opt.s ? 'border-emerald-200 bg-emerald-50/30' : 'border-slate-100'}`}
-        >
-          <div className="flex justify-between items-center relative z-10">
-            <div className="flex items-center gap-3">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center font-black text-xs ${opt.s ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-400'}`}>
-                {i + 1}
-              </div>
-              <span className={`text-sm font-bold tracking-tight ${opt.s ? 'text-slate-900' : 'text-slate-500'}`}>{opt.n}</span>
-            </div>
-            <div className="text-right">
-               <span className="text-sm font-black text-slate-900">{opt.v}%</span>
-               {opt.s && <CheckCircle2 size={12} className="text-emerald-600 ml-1 inline-block mb-0.5" />}
-            </div>
-          </div>
-          <motion.div 
-            initial={{ width: 0 }}
-            whileInView={{ width: `${opt.v}%` }}
-            transition={{ duration: 1, delay: 0.2 + i*0.1 }}
-            className={`absolute bottom-0 left-0 h-1 ${opt.s ? 'bg-emerald-600' : 'bg-slate-200'}`} 
-          />
-        </motion.div>
-      ))}
-      <div className="pt-6 space-y-4">
-        <div className="flex justify-between items-end mb-2">
-          <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">12,450 Votes Cast</div>
-          <div className="text-[10px] font-black text-emerald-600 uppercase tracking-widest">Active</div>
-        </div>
-        <motion.button 
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="w-full bg-emerald-600 text-white rounded-2xl py-4 font-black text-sm shadow-xl shadow-emerald-100"
-        >
-          Cast Your Vote
-        </motion.button>
-      </div>
-    </div>
+    <PollCard 
+      className="h-full border-none shadow-none rounded-none"
+      title="Who was your MVP for the Derby?"
+      totalVotes={12450}
+      options={[
+        { id: 1, label: 'Rafael Leão', votes: 5602 },
+        { id: 2, label: 'Lautaro Martínez', votes: 3486 },
+        { id: 3, label: 'Mike Maignan', votes: 1862 }
+      ]}
+      onVote={(id) => console.log('Voted for:', id)}
+    />
   </div>
 );
 
