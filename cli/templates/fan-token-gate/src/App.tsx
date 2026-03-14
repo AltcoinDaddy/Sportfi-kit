@@ -1,4 +1,4 @@
-import { SportFiKitProvider, ConnectButton, SafeAreaWrapper, FanTokenGate } from '@chiliz/sportfi-kit';
+import { SportFiKitProvider, ConnectButton, SafeAreaWrapper, FanTokenGate } from 'sportfi-kit';
 
 function App() {
   const JUV_TOKEN = "0x...123"; // Juventus Fan Token
