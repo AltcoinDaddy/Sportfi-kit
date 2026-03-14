@@ -1,0 +1,55 @@
+{
+  "name": "sportfi-kit",
+  "version": "1.0.0",
+  "description": "SportFi Kit - Modern React component library + CLI for building fan engagement mini-apps on Chiliz Chain.",
+  "main": "./dist/src/index.js",
+  "module": "./dist/src/index.mjs",
+  "types": "./dist/src/index.d.ts",
+  "bin": {
+    "sportfi-kit": "./dist/cli/index.js"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "author": "Chiliz Team",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "chiliz",
+    "chiliz-chain",
+    "sportfi",
+    "web3",
+    "miniapp",
+    "socios",
+    "fan-tokens",
+    "blockchain"
+  ],
+  "scripts": {
+    "build": "tsc --outDir dist"
+  },
+  "dependencies": {
+    "@reown/appkit": "^1.6.4",
+    "@reown/appkit-adapter-wagmi": "^1.6.4",
+    "@tanstack/react-query": "^5.66.0",
+    "cac": "^6.7.14",
+    "chalk": "^5.4.1",
+    "framer-motion": "^12.36.0",
+    "fs-extra": "^11.3.0",
+    "lucide-react": "^0.475.0",
+    "viem": "2.x",
+    "wagmi": "2.x"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^12.20.55"
+  }
+}

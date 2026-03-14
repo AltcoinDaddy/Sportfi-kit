@@ -1,0 +1,1 @@
+{"version":3,"file":"SafeAreaWrapper.d.ts","sourceRoot":"","sources":["../../src/components/SafeAreaWrapper.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAG1B;;GAEG;AACH,eAAO,MAAM,eAAe,EAAE,KAAK,CAAC,EAAE,CAAC;IAAE,QAAQ,EAAE,KAAK,CAAC,SAAS,CAAC;IAAC,SAAS,CAAC,EAAE,MAAM,CAAA;CAAE,CAqBvF,CAAC"}
