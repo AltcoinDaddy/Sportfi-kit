@@ -78,6 +78,10 @@ Available templates:
 For full API reference, component guides, and Socios integration tips, visit our documentation site:
 **[docs.sportfi.kit](https://localhost:5173)** (Local Preview)
 
+## Contributing
+
+Contributions are welcome! Please see our [Contributing Guidelines](../../CONTRIBUTING.md) and [Code of Conduct](../../CODE_OF_CONDUCT.md) for more information.
+
 ## License
 
 MIT
