@@ -1,16 +1,8 @@
 # sportfi-kit
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/chiliz/sportfi-kit/main/logo.svg" width="128" height="128" alt="SportFi Kit Logo" />
-  <h1>SportFi Kit</h1>
-  <p>The ultimate SDK for building high-performance SportFi mini-apps on Chiliz Chain.</p>
-</div>
+SportFi Kit is a modern React component library, collection of hooks, and CLI tool designed specifically for developers building dApps for the Socios.com Wallet Browser and Telegram Mini-App ecosystems.
 
----
-
-**SportFi Kit** is a modern React component library, collection of hooks, and CLI tool designed specifically for developers building dApps for the **Socios.com Wallet Browser** and **Telegram Mini-App** ecosystems.
-
-## 🚀 Key Features
+## Key Features
 
 - **Built for Chiliz Chain**: Hard-coded support for Mainnet (88888) and Spicy Testnet (88882).
 - **Embedded Browser Optimized**: Automatic detection and support for Socios.com and Telegram browser environments.
@@ -19,13 +11,13 @@
 - **Modern Tech Stack**: React 19, Reown AppKit, Wagmi v2, Viem v2, and TanStack Query v5.
 - **Premium Aesthetic**: Minimalist, high-contrast design system featuring Emerald-600 accents.
 
-## 📦 Installation
+## Installation
 
 ```bash
 npm install sportfi-kit
 ```
 
-## 🛠️ Quick Start
+## Quick Start
 
 ### 1. Configure Provider
 
@@ -62,7 +54,7 @@ function Header() {
 }
 ```
 
-## 💻 CLI Tools
+## CLI Tools
 
 SportFi Kit comes with a powerful CLI to scaffold new projects in seconds.
 
@@ -75,16 +67,17 @@ npx sportfi-kit add-example live-poll
 ```
 
 Available templates:
+
 - `basic`: Minimalism at its finest.
 - `prediction-market`: Full Chiliz-integrated prediction UI.
 - `fan-token-gate`: Content locking based on Fan Token ownership.
 - `live-poll`: Real-time on-chain voting.
 
-## 📖 Documentation
+## Documentation
 
 For full API reference, component guides, and Socios integration tips, visit our documentation site:
 **[docs.sportfi.kit](https://localhost:5173)** (Local Preview)
 
-## 📄 License
+## License
 
-MIT © [Chiliz Team](LICENSE)
+MIT

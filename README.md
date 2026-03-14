@@ -1,12 +1,19 @@
 # SportFi Kit Monorepo
 
-This repository contains the source code for the `sportfi-kit` npm package and its associated documentation.
+SportFi Kit is a modern React component library, collection of hooks, and CLI tool designed specifically for developers building dApps for the Socios.com Wallet Browser and Telegram Mini-App ecosystems.
 
 ## Structure
 
 - `packages/core`: The main SportFi Kit package (components, hooks, CLI).
 - `docs-site`: The documentation site built with Vite and React.
 - `cli`: CLI source code (linked to `packages/core/cli`).
+
+## Key Features
+
+- **Built for Chiliz Chain**: Hard-coded support for Mainnet (88888) and Spicy Testnet (88882).
+- **Embedded Browser Optimized**: Automatic detection and support for Socios.com and Telegram browser environments.
+- **Fan Token Infrastructure**: Ready-to-use components for Fan Token gating and balance tracking.
+- **SportFi Components**: Prediction cards, voting hooks, and Pyth oracle integration out of the box.
 
 ## Development
 
@@ -39,4 +46,4 @@ npm run dev --workspace=sportfi-kit-docs
 
 ## License
 
-MIT © [Chiliz Team](LICENSE)
+MIT
