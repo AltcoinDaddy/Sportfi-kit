@@ -1,11 +1,14 @@
-import { jsx as _jsx } from "react/jsx-runtime";
-import { createContext, useContext, useEffect, useState } from 'react';
-import { createAppKit } from '@reown/appkit/react';
-import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
-import { WagmiProvider } from 'wagmi';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { detectSociosBrowser } from '../utils/detectSociosBrowser';
-import { isTelegramMiniApp, initTelegramWebApp } from '../utils/telegramMiniAppSupport';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useMiniAppContext = exports.SportFiKitProvider = void 0;
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const react_2 = require("@reown/appkit/react");
+const appkit_adapter_wagmi_1 = require("@reown/appkit-adapter-wagmi");
+const wagmi_1 = require("wagmi");
+const react_query_1 = require("@tanstack/react-query");
+const detectSociosBrowser_js_1 = require("../utils/detectSociosBrowser.js");
+const telegramMiniAppSupport_js_1 = require("../utils/telegramMiniAppSupport.js");
 // Define Chiliz Chains
 const chilizMainnet = {
     id: 88888,
@@ -33,23 +36,23 @@ const chilizSpicy = {
         default: { name: 'ChilizScan', url: 'https://spicy-scan.chiliz.com' },
     },
 };
-const queryClient = new QueryClient();
-const MiniAppContext = createContext(undefined);
+const queryClient = new react_query_1.QueryClient();
+const MiniAppContext = (0, react_1.createContext)(undefined);
 /**
  * SportFiKitProvider - The one-line entry point for SportFi Kit.
  * Handles Reown AppKit, Wagmi, and environment detection.
  */
-export const SportFiKitProvider = ({ config, children }) => {
-    const [miniAppContext, setMiniAppContext] = useState({
+const SportFiKitProvider = ({ config, children }) => {
+    const [miniAppContext, setMiniAppContext] = (0, react_1.useState)({
         isSociosBrowser: false,
         isTelegramMiniApp: false,
         safeAreaInsets: { top: 0, bottom: 0, left: 0, right: 0 },
     });
-    useEffect(() => {
-        const isSocios = detectSociosBrowser();
-        const isTG = isTelegramMiniApp();
+    (0, react_1.useEffect)(() => {
+        const isSocios = (0, detectSociosBrowser_js_1.detectSociosBrowser)();
+        const isTG = (0, telegramMiniAppSupport_js_1.isTelegramMiniApp)();
         if (isTG)
-            initTelegramWebApp();
+            (0, telegramMiniAppSupport_js_1.initTelegramWebApp)();
         setMiniAppContext(prev => ({
             ...prev,
             isSociosBrowser: isSocios,
@@ -58,13 +61,13 @@ export const SportFiKitProvider = ({ config, children }) => {
     }, []);
     // Initialize Reown AppKit Adapter
     const networks = [chilizMainnet, chilizSpicy];
-    const wagmiAdapter = new WagmiAdapter({
+    const wagmiAdapter = new appkit_adapter_wagmi_1.WagmiAdapter({
         networks,
         projectId: config.reownProjectId,
     });
     // Create AppKit instance
-    useEffect(() => {
-        createAppKit({
+    (0, react_1.useEffect)(() => {
+        (0, react_2.createAppKit)({
             adapters: [wagmiAdapter],
             networks,
             projectId: config.reownProjectId,
@@ -78,11 +81,13 @@ export const SportFiKitProvider = ({ config, children }) => {
             },
         });
     }, [config.reownProjectId]);
-    return (_jsx(WagmiProvider, { config: wagmiAdapter.wagmiConfig, children: _jsx(QueryClientProvider, { client: queryClient, children: _jsx(MiniAppContext.Provider, { value: miniAppContext, children: children }) }) }));
+    return ((0, jsx_runtime_1.jsx)(wagmi_1.WagmiProvider, { config: wagmiAdapter.wagmiConfig, children: (0, jsx_runtime_1.jsx)(react_query_1.QueryClientProvider, { client: queryClient, children: (0, jsx_runtime_1.jsx)(MiniAppContext.Provider, { value: miniAppContext, children: children }) }) }));
 };
-export const useMiniAppContext = () => {
-    const context = useContext(MiniAppContext);
+exports.SportFiKitProvider = SportFiKitProvider;
+const useMiniAppContext = () => {
+    const context = (0, react_1.useContext)(MiniAppContext);
     if (!context)
         throw new Error('useMiniAppContext must be used within SportFiKitProvider');
     return context;
 };
+exports.useMiniAppContext = useMiniAppContext;

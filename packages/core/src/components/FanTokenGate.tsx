@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFanTokenBalance } from '../hooks/useFanTokenBalance';
+import { useFanTokenBalance } from '../hooks/useFanTokenBalance.js';
 
 interface FanTokenGateProps {
   tokenAddress: string;

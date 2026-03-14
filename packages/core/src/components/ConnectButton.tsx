@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSportFiConnect } from '../hooks/useSportFiConnect';
+import { useSportFiConnect } from '../hooks/useSportFiConnect.js';
 
 /**
  * ConnectButton - The primary entry point for wallet connection.

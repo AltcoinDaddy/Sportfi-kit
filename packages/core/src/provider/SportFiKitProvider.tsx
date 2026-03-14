@@ -3,9 +3,9 @@ import { createAppKit } from '@reown/appkit/react';
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
 import { WagmiProvider } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SportFiConfig, MiniAppContextType } from '../types';
-import { detectSociosBrowser } from '../utils/detectSociosBrowser';
-import { isTelegramMiniApp, initTelegramWebApp } from '../utils/telegramMiniAppSupport';
+import { SportFiConfig, MiniAppContextType } from '../types/index.js';
+import { detectSociosBrowser } from '../utils/detectSociosBrowser.js';
+import { isTelegramMiniApp, initTelegramWebApp } from '../utils/telegramMiniAppSupport.js';
 
 // Define Chiliz Chains
 const chilizMainnet = {

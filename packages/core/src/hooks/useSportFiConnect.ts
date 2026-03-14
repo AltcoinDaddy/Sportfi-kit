@@ -1,6 +1,6 @@
 import { useAccount, useDisconnect } from 'wagmi';
 import { useAppKit } from '@reown/appkit/react';
-import { useMiniAppContext } from '../provider/SportFiKitProvider';
+import { useMiniAppContext } from '../provider/SportFiKitProvider.js';
 
 /**
  * Hook to manage SportFi connection and authentication.

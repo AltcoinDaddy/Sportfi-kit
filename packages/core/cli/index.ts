@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import { cac } from 'cac';
 import chalk from 'chalk';
-import { createCommand } from './commands/create';
-import { initCommand } from './commands/init';
-import { addExampleCommand } from './commands/add-example';
+import { createCommand } from './commands/create.js';
+import { initCommand } from './commands/init.js';
+import { addExampleCommand } from './commands/add-example.js';
 
 const cli = cac('sportfi-kit');
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SportFiConfig, MiniAppContextType } from '../types';
+import { SportFiConfig, MiniAppContextType } from '../types/index.js';
 /**
  * SportFiKitProvider - The one-line entry point for SportFi Kit.
  * Handles Reown AppKit, Wagmi, and environment detection.

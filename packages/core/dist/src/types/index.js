@@ -1,5 +1,6 @@
+"use strict";
 /**
  * sportfi-kit Core Types
  * JSDoc documented for production readiness.
  */
-export {};
+Object.defineProperty(exports, "__esModule", { value: true });
