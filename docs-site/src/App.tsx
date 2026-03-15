@@ -8,7 +8,6 @@ import { UsageGuide } from './components/UsageGuide';
 import { ApiReference } from './components/ApiReference';
 import { WhatYouCanBuild } from './components/WhatYouCanBuild';
 import { SociosGuide } from './components/SociosGuide';
-import { Leaf } from 'lucide-react';
 import { SportFiKitProvider } from 'sportfi-kit';
 
 function App() {
@@ -28,8 +27,8 @@ function App() {
                     className="flex items-center gap-3 cursor-pointer"
                     whileHover={{ scale: 1.02 }}
                   >
-                    <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-200">
-                      <Leaf className="text-white w-6 h-6" />
+                    <div className="w-10 h-10 flex items-center justify-center">
+                      <img src="/logo.png" className="w-full h-full object-contain" alt="SportFi Logo" />
                     </div>
                     <span className="text-xl font-black text-slate-900 tracking-tight">
                       SportFi <span className="text-emerald-600">Kit</span>
@@ -82,8 +81,8 @@ function App() {
             <footer className="bg-white border-t border-slate-100 py-16">
               <div className="max-w-7xl mx-auto px-4 text-center">
                 <div className="flex items-center justify-center gap-3 mb-6">
-                   <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center">
-                     <Leaf className="text-emerald-600 w-5 h-5" />
+                   <div className="w-8 h-8 flex items-center justify-center">
+                     <img src="/logo.png" className="w-full h-full object-contain opacity-80" alt="SportFi Logo" />
                    </div>
                    <span className="font-black text-lg">SportFi Kit</span>
                 </div>

@@ -1,4 +1,8 @@
-# SportFi Kit Monorepo
+<div align="center">
+  <img src="packages/core/assets/logo.png" width="120" height="120" alt="SportFi Kit Logo" />
+  <h1>SportFi Kit Monorepo</h1>
+  <p><b>Modern Web3 components for the Chiliz Stadium of Tomorrow.</b></p>
+</div>
 
 SportFi Kit is a modern React component library, collection of hooks, and CLI tool designed specifically for developers building dApps for the Socios.com Wallet Browser and Telegram Mini-App ecosystems.
 

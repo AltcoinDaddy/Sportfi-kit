@@ -7,7 +7,10 @@ function App() {
     <SportFiKitProvider config={{ reownProjectId: '744927b2671542f7d93416e9d6d51a66' }}>
       <SafeAreaWrapper className="p-4">
         <header className="flex justify-between items-center mb-8">
-          <span className="font-bold text-xl text-emerald-600">Fan Gate Demo</span>
+          <div className="flex items-center gap-3">
+            <img src="/logo.png" className="w-8 h-8 object-contain" alt="SportFi Logo" />
+            <span className="font-bold text-xl text-emerald-600">Fan Gate Demo</span>
+          </div>
           <ConnectButton />
         </header>
 
