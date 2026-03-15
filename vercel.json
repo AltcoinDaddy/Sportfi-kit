@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "npm run build --workspace=sportfi-kit-docs",
+  "buildCommand": "npm run build --workspace=sportfi-kit && npm run build --workspace=sportfi-kit-docs",
   "outputDirectory": "docs-site/dist",
   "rewrites": [
     {

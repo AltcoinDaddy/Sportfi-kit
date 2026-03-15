@@ -16,7 +16,11 @@
   "browser": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "exports": {
-    ".": "./dist/src/index.js",
+    ".": {
+      "import": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    },
     "./package.json": "./package.json"
   },
   "bin": {
