@@ -1,5 +1,4 @@
 
-import { motion, AnimatePresence } from 'framer-motion';
 import { Hero } from './components/Hero';
 import { Features } from './components/Features';
 import { Quickstart } from './components/Quickstart';
@@ -9,52 +8,43 @@ import { ApiReference } from './components/ApiReference';
 import { WhatYouCanBuild } from './components/WhatYouCanBuild';
 import { SociosGuide } from './components/SociosGuide';
 import { Leaf } from 'lucide-react';
+import { SportFiKitProvider } from 'sportfi-kit';
 
 function App() {
   return (
-    <div className="min-h-screen bg-mesh font-sans selection:bg-emerald-100 selection:text-emerald-900">
-      <AnimatePresence>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
+    <SportFiKitProvider config={{ reownProjectId: 'bd56f634560b43063fc3a3b069d2a23e' }}>
+      <div className="min-h-screen bg-mesh font-sans selection:bg-emerald-100 selection:text-emerald-900">
+      <div className="relative">
           {/* Navigation */}
           <nav className="sticky top-0 z-50 glass">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-16">
-                <motion.div 
-                  className="flex items-center gap-3 cursor-pointer"
-                  whileHover={{ scale: 1.02 }}
-                >
+                <div className="flex items-center gap-3 cursor-pointer">
                   <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-200">
                     <Leaf className="text-white w-6 h-6" />
                   </div>
                   <span className="text-xl font-black text-slate-900 tracking-tight">
                     SportFi <span className="text-emerald-600">Kit</span>
                   </span>
-                </motion.div>
+                </div>
                 <div className="hidden md:flex items-center gap-8">
                   {['Quickstart', 'Examples'].map((item) => (
-                    <motion.a
+                    <a
                       key={item}
                       href={`#${item.toLowerCase()}`}
                       className="text-sm font-semibold text-slate-600 hover:text-emerald-600 transition-colors relative group"
-                      whileHover={{ y: -2 }}
                     >
                       {item}
                       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-600 transition-all group-hover:w-full" />
-                    </motion.a>
+                    </a>
                   ))}
                   <a href="https://www.sportfikit.online" className="text-sm font-semibold text-slate-600 hover:text-emerald-600 transition-colors">API Reference</a>
-                  <motion.a 
+                  <a 
                     href="https://github.com/AltcoinDaddy/Sportfi-kit" 
                     className="bg-slate-900 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-slate-800 transition-all shadow-xl shadow-slate-200"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                   >
                     Get Started
-                  </motion.a>
+                  </a>
                 </div>
               </div>
             </div>
@@ -62,12 +52,7 @@ function App() {
 
           <main>
             <Hero />
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-            >
+            <div>
               <Features />
               <Quickstart />
               <Examples />
@@ -75,7 +60,7 @@ function App() {
               <UsageGuide />
               <ApiReference />
               <SociosGuide />
-            </motion.div>
+            </div>
           </main>
 
           {/* Footer */}
@@ -90,9 +75,9 @@ function App() {
               <p className="text-slate-400 text-sm font-medium">© 2026. Designed for the Future of Sports.</p>
             </div>
           </footer>
-        </motion.div>
-      </AnimatePresence>
+        </div>
     </div>
+    </SportFiKitProvider>
   );
 }
 
