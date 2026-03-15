@@ -10,6 +10,8 @@ SportFi Kit is a modern React component library, collection of hooks, and CLI to
 - **SportFi Components**: Prediction cards, voting hooks, and Pyth oracle integration out of the box.
 - **Modern Tech Stack**: React 19, Reown AppKit, Wagmi v2, Viem v2, and TanStack Query v5.
 - **Premium Aesthetic**: Minimalist, high-contrast design system featuring Emerald-600 accents.
+- **Feedback-First UI**: Built-in **Skeleton Loaders** for all cards and **ActionToast** for transaction feedback.
+- **Stabilized Provider**: Production-ready singleton pattern ensures reliable wallet connections.
 
 ## Installation
 

@@ -1,6 +1,6 @@
 {
   "name": "sportfi-kit",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chiliz/sportfi-kit.git"
@@ -56,7 +56,9 @@
     "chalk": "^5.4.1",
     "framer-motion": "^12.36.0",
     "fs-extra": "^11.3.0",
+    "gradient-string": "^3.0.0",
     "lucide-react": "^0.475.0",
+    "ora": "^9.3.0",
     "viem": "2.x",
     "wagmi": "2.x"
   },

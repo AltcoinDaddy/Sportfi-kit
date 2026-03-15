@@ -18,6 +18,7 @@ interface PollCardProps {
   userVoteId?: string | number;
   totalVotes: number;
   isLoading?: boolean;
+  isSkeleton?: boolean;
   className?: string;
 }
 
@@ -34,8 +35,30 @@ export const PollCard: React.FC<PollCardProps> = ({
   userVoteId,
   totalVotes,
   isLoading = false,
+  isSkeleton = false,
   className = ""
 }) => {
+  if (isSkeleton) {
+    return (
+      <div className={`bg-white rounded-[2.5rem] shadow-lg border border-slate-100 flex flex-col overflow-hidden animate-pulse ${className}`}>
+        <div className="p-8 pb-6">
+          <div className="w-24 h-4 bg-slate-200 rounded-md mb-3" />
+          <div className="w-48 h-8 bg-slate-300 rounded-lg" />
+        </div>
+        <div className="px-8 pb-8 flex-1 space-y-4">
+          {[1, 2, 3].map(i => (
+            <div key={i} className="h-16 bg-slate-100 rounded-2xl" />
+          ))}
+          <div className="pt-6 border-t border-slate-50 flex justify-between">
+            <div className="w-32 h-4 bg-slate-100 rounded-md" />
+            <div className="w-16 h-4 bg-slate-100 rounded-md" />
+          </div>
+          <div className="h-16 bg-slate-200 rounded-2xl mt-8" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`bg-white rounded-[2.5rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] border border-slate-100 flex flex-col overflow-hidden ${className}`}>
       {/* Header */}

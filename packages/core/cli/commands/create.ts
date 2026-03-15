@@ -1,32 +1,42 @@
 import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
+import ora from 'ora';
+import gradient from 'gradient-string';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const sportfiGradient = gradient(['#10b981', '#059669', '#047857']);
+
 export const createCommand = async (appName: string, options: { template: string }) => {
+  console.log('\n' + sportfiGradient.multiline([
+    '  ⚽ SportFi Kit',
+    '  Build your fan engagement apps faster.'
+  ].join('\n')) + '\n');
+
   const targetDir = path.resolve(process.cwd(), appName);
-  // Resolve templates from the package root
-  // - In source: packages/core/cli/commands/create.ts -> ../../templates
-  // - In build: packages/core/dist/cli/commands/create.js -> ../../../templates
   const sourcePath = path.resolve(__dirname, '../../templates', options.template);
   const buildPath = path.resolve(__dirname, '../../../templates', options.template);
   const templateDir = fs.existsSync(sourcePath) ? sourcePath : buildPath;
 
   if (fs.existsSync(targetDir)) {
-    console.error(chalk.red(`Error: Directory ${appName} already exists.`));
+    console.error(chalk.red(`\n  ✖ Error: Directory ${appName} already exists.`));
     process.exit(1);
   }
 
   if (!fs.existsSync(templateDir)) {
-    console.error(chalk.red(`Error: Template "${options.template}" not found.`));
+    console.error(chalk.red(`\n  ✖ Error: Template "${options.template}" not found.`));
     process.exit(1);
   }
 
+  const spinner = ora({
+    text: `Scaffolding project in ${chalk.bold(appName)} using ${chalk.cyan(options.template)}...`,
+    color: 'green'
+  }).start();
+
   try {
-    console.log(chalk.blue(`Scaffolding project from ${options.template} template...`));
     await fs.copy(templateDir, targetDir);
 
     // Update package.json name
@@ -37,13 +47,16 @@ export const createCommand = async (appName: string, options: { template: string
       await fs.writeJson(pkgPath, pkg, { spaces: 2 });
     }
 
-    console.log(chalk.green(`\n✅ Project "${appName}" created successfully!`));
-    console.log(`\nNext steps:`);
-    console.log(`  cd ${appName}`);
-    console.log(`  npm install`);
-    console.log(`  npm run dev\n`);
+    spinner.succeed(chalk.green(`Project ${chalk.bold(appName)} is ready!`));
+    
+    console.log('\n' + chalk.bold('  Next steps:'));
+    console.log(`    1. ${chalk.cyan(`cd ${appName}`)}`);
+    console.log(`    2. ${chalk.cyan('npm install')}`);
+    console.log(`    3. ${chalk.cyan('npm run dev')}`);
+    console.log('\n  ' + sportfiGradient('Happy hacking! 🚀') + '\n');
 
   } catch (err) {
-    console.error(chalk.red('Failed to create project:'), err);
+    spinner.fail(chalk.red('Failed to create project.'));
+    console.error(err);
   }
 };

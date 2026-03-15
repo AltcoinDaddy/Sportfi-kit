@@ -10,6 +10,7 @@ export * from './components/PredictionCard.js';
 export * from './components/ShareToSociosButton.js';
 export * from './components/CloseMiniAppButton.js';
 export * from './components/SafeAreaWrapper.js';
+export * from './components/ActionToast.js';
 export * from './utils/detectSociosBrowser.js';
 export * from './utils/telegramMiniAppSupport.js';
 export * from './types/index.js';

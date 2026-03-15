@@ -18,6 +18,7 @@ interface PredictionCardProps {
   options: { label: string; odds: string }[];
   onSelect: (label: string) => void;
   isLoading?: boolean;
+  isSkeleton?: boolean;
   className?: string;
 }
 
@@ -34,8 +35,37 @@ export const PredictionCard: React.FC<PredictionCardProps> = ({
   options,
   onSelect,
   isLoading = false,
+  isSkeleton = false,
   className = ""
 }) => {
+  if (isSkeleton) {
+    return (
+      <div className={`bg-white rounded-[2.5rem] overflow-hidden shadow-lg border border-slate-100 flex flex-col animate-pulse ${className}`}>
+        <div className="bg-slate-200 h-48 p-8 flex justify-around items-center">
+          <div className="w-20 h-20 bg-slate-300 rounded-3xl" />
+          <div className="flex flex-col items-center gap-2">
+            <div className="w-16 h-8 bg-slate-300 rounded-lg" />
+            <div className="w-12 h-4 bg-slate-300 rounded-md" />
+          </div>
+          <div className="w-20 h-20 bg-slate-300 rounded-3xl" />
+        </div>
+        <div className="p-8 flex-1 flex flex-col gap-6">
+          <div className="flex justify-between">
+            <div className="w-24 h-4 bg-slate-200 rounded-md" />
+            <div className="flex gap-2">
+              <div className="w-12 h-4 bg-slate-100 rounded-md" />
+              <div className="w-12 h-4 bg-slate-100 rounded-md" />
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-4">
+            {[1, 2, 3].map(i => <div key={i} className="h-16 bg-slate-100 rounded-2xl" />)}
+          </div>
+          <div className="h-14 bg-slate-200 rounded-2xl mt-auto" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`bg-white rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)] border border-slate-100 flex flex-col ${className}`}>
       {/* Header / Match Preview */}
