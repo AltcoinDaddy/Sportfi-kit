@@ -40,6 +40,8 @@ const queryClient = new QueryClient();
 
 const MiniAppContext = createContext<MiniAppContextType | undefined>(undefined);
 
+let appKitInstance: any = null;
+
 /**
  * SportFiKitProvider - The one-line entry point for SportFi Kit.
  * Handles Reown AppKit, Wagmi, and environment detection.
@@ -48,6 +50,7 @@ export const SportFiKitProvider: React.FC<{
   config: SportFiConfig;
   children: React.ReactNode;
 }> = ({ config, children }) => {
+  const [isReady, setIsReady] = useState(false);
   const [miniAppContext, setMiniAppContext] = useState<MiniAppContextType>({
     isSociosBrowser: false,
     isTelegramMiniApp: false,
@@ -77,30 +80,37 @@ export const SportFiKitProvider: React.FC<{
 
   // Create AppKit instance once
   useEffect(() => {
-    createAppKit({
-      adapters: [wagmiAdapter],
-      networks,
-      projectId: config.reownProjectId,
-      themeMode: 'light',
-      themeVariables: {
-        '--w3m-accent': '#059669', // Emerald-600
-        '--w3m-border-radius-master': '6px',
-      },
-      features: {
-        analytics: true,
-      },
-    });
-
-    return () => {
-      // Clean up if necessary
-    };
+    if (!appKitInstance) {
+      try {
+        appKitInstance = createAppKit({
+          adapters: [wagmiAdapter],
+          networks,
+          projectId: config.reownProjectId,
+          themeMode: 'light',
+          themeVariables: {
+            '--w3m-accent': '#059669', // Emerald-600
+            '--w3m-border-radius-master': '6px',
+          },
+          features: {
+            analytics: true,
+          },
+        });
+      } catch (err) {
+        console.error('SportFiKit: Failed to initialize AppKit', err);
+      }
+    }
+    setIsReady(true);
   }, [wagmiAdapter, config.reownProjectId]);
 
   return (
     <WagmiProvider config={wagmiAdapter.wagmiConfig}>
       <QueryClientProvider client={queryClient}>
         <MiniAppContext.Provider value={miniAppContext}>
-          {children}
+          {isReady ? children : (
+            <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600"></div>
+            </div>
+          )}
         </MiniAppContext.Provider>
       </QueryClientProvider>
     </WagmiProvider>
