@@ -4,7 +4,7 @@ function App() {
   const JUV_TOKEN = "0x...123"; // Juventus Fan Token
 
   return (
-    <SportFiKitProvider config={{ reownProjectId: 'demo' }}>
+    <SportFiKitProvider config={{ reownProjectId: '744927b2671542f7d93416e9d6d51a66' }}>
       <SafeAreaWrapper className="p-4">
         <header className="flex justify-between items-center mb-8">
           <span className="font-bold text-xl text-emerald-600">Fan Gate Demo</span>

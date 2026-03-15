@@ -2,7 +2,7 @@ import { SportFiKitProvider, ConnectButton, SafeAreaWrapper } from 'sportfi-kit'
 
 function App() {
   const config = {
-    reownProjectId: 'YOUR_PROJECT_ID',
+    reownProjectId: '744927b2671542f7d93416e9d6d51a66',
   };
 
   return (

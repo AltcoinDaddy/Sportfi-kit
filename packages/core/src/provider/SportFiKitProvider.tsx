@@ -69,12 +69,13 @@ export const SportFiKitProvider: React.FC<{
 
   // Initialize Reown AppKit Adapter
   const networks = [chilizMainnet, chilizSpicy] as any;
-  const wagmiAdapter = new WagmiAdapter({
+  
+  const wagmiAdapter = React.useMemo(() => new WagmiAdapter({
     networks,
     projectId: config.reownProjectId,
-  });
+  }), [config.reownProjectId]);
 
-  // Create AppKit instance
+  // Create AppKit instance once
   useEffect(() => {
     createAppKit({
       adapters: [wagmiAdapter],
@@ -89,7 +90,11 @@ export const SportFiKitProvider: React.FC<{
         analytics: true,
       },
     });
-  }, [config.reownProjectId]);
+
+    return () => {
+      // Clean up if necessary
+    };
+  }, [wagmiAdapter, config.reownProjectId]);
 
   return (
     <WagmiProvider config={wagmiAdapter.wagmiConfig}>

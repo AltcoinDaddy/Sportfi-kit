@@ -2,12 +2,12 @@ import { SportFiKitProvider, ConnectButton, SafeAreaWrapper, useSimpleVote } fro
 
 function App() {
   const POLL_CONTRACT = "0x...abc";
-  const { vote, isPending, isSuccess } = useSimpleVote(POLL_CONTRACT);
+  const { submitVote, isSubmitting, isConfirmed } = useSimpleVote(POLL_CONTRACT);
 
   const options = ["Messi", "Ronaldo", "Neymar"];
 
   return (
-    <SportFiKitProvider config={{ reownProjectId: 'demo' }}>
+    <SportFiKitProvider config={{ reownProjectId: '744927b2671542f7d93416e9d6d51a66' }}>
       <SafeAreaWrapper className="p-4">
         <header className="flex justify-between items-center mb-10">
           <span className="font-bold text-xl text-emerald-600">Fan Vote</span>
@@ -21,10 +21,10 @@ function App() {
             {options.map((opt, i) => (
               <button
                 key={i}
-                onClick={() => vote(i)}
-                disabled={isPending || isSuccess}
+                onClick={() => submitVote(i)}
+                disabled={isSubmitting || isConfirmed}
                 className={`w-full p-4 text-left border rounded-lg transition-all ${
-                  isSuccess ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-slate-200 hover:border-emerald-600'
+                  isConfirmed ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-slate-200 hover:border-emerald-600'
                 }`}
               >
                 {opt}
@@ -32,9 +32,9 @@ function App() {
             ))}
           </div>
 
-          {isSuccess && (
+          {isConfirmed && (
             <p className="mt-4 text-center text-emerald-600 font-medium">Your vote has been cast! ✅</p>
-          ) || isPending && (
+          ) || isSubmitting && (
              <p className="mt-4 text-center text-slate-500">Submitting vote...</p>
           )}
         </div>
