@@ -37,43 +37,52 @@ export const PredictionCard: React.FC<PredictionCardProps> = ({
   className = ""
 }) => {
   return (
-    <div className={`bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 flex flex-col ${className}`}>
+    <div className={`bg-white rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)] border border-slate-100 flex flex-col ${className}`}>
       {/* Header / Match Preview */}
-      <div className="bg-emerald-600 p-5 text-white relative">
-        <div className="flex justify-between items-center mb-6">
-          <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
-            <Trophy size={14} />
+      <div className="bg-emerald-600 p-8 pt-10 text-white relative overflow-hidden">
+        {/* Decorative background circle */}
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="flex justify-between items-center mb-8 relative z-10">
+          <div className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/20">
+            <Trophy size={18} />
           </div>
           {isLive && (
-            <div className="text-[10px] font-black tracking-[0.2em] uppercase opacity-80">
-              Live Match
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/30 backdrop-blur-md border border-white/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+              <span className="text-[10px] font-black tracking-widest uppercase">Live Match</span>
             </div>
           )}
-          <div className="w-8 h-8 rounded-xl bg-white/20" />
+          <div className="w-10 h-10 rounded-2xl bg-white/20" />
         </div>
 
-        <div className="flex justify-around items-center py-2">
+        <div className="flex justify-around items-center py-4 relative z-10">
           {/* Home Team */}
           <div className="text-center group">
-            <div className="w-14 h-14 bg-white rounded-2xl mb-2 mx-auto shadow-lg flex items-center justify-center text-slate-900 font-black text-xs overflow-hidden">
+            <motion.div 
+              whileHover={{ scale: 1.05, rotate: -5 }}
+              className="w-20 h-20 bg-white rounded-3xl mb-3 mx-auto shadow-2xl flex items-center justify-center text-slate-900 font-black text-sm overflow-hidden border-4 border-white/30"
+            >
               {homeTeam.logo ? (
                 <img src={homeTeam.logo} alt={homeTeam.name} className="w-full h-full object-cover" />
               ) : (
-                homeTeam.symbol
+                <span className="text-xl tracking-tighter">{homeTeam.symbol}</span>
               )}
-            </div>
-            <div className="text-[10px] font-black uppercase tracking-wider">
+            </motion.div>
+            <div className="text-[11px] font-black uppercase tracking-[0.15em] text-white/90">
               {homeTeam.name}
             </div>
           </div>
 
           {/* Score / Status */}
           <div className="flex flex-col items-center">
-            <div className="text-3xl font-black mb-1 tracking-tighter">
-              {homeTeam.score ?? 0} - {awayTeam.score ?? 0}
+            <div className="text-4xl font-black mb-2 tracking-tighter flex items-center gap-4">
+              <span className="drop-shadow-lg">{homeTeam.score ?? 0}</span>
+              <span className="text-white/40 font-light">-</span>
+              <span className="drop-shadow-lg">{awayTeam.score ?? 0}</span>
             </div>
             {matchStatus && (
-              <div className={`px-2 py-0.5 rounded-full text-[8px] font-bold ${isLive ? 'bg-emerald-500 animate-pulse' : 'bg-slate-500/50'}`}>
+              <div className="px-3 py-1 rounded-lg bg-emerald-500/40 backdrop-blur-md border border-white/10 text-[10px] font-bold tracking-wider">
                 {matchStatus}
               </div>
             )}
@@ -81,14 +90,17 @@ export const PredictionCard: React.FC<PredictionCardProps> = ({
 
           {/* Away Team */}
           <div className="text-center group">
-            <div className="w-14 h-14 bg-white rounded-2xl mb-2 mx-auto shadow-lg flex items-center justify-center text-slate-900 font-black text-xs overflow-hidden">
+            <motion.div 
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              className="w-20 h-20 bg-white rounded-3xl mb-3 mx-auto shadow-2xl flex items-center justify-center text-slate-900 font-black text-sm overflow-hidden border-4 border-white/30"
+            >
               {awayTeam.logo ? (
                 <img src={awayTeam.logo} alt={awayTeam.name} className="w-full h-full object-cover" />
               ) : (
-                awayTeam.symbol
+                <span className="text-xl tracking-tighter">{awayTeam.symbol}</span>
               )}
-            </div>
-            <div className="text-[10px] font-black uppercase tracking-wider">
+            </motion.div>
+            <div className="text-[11px] font-black uppercase tracking-[0.15em] text-white/90">
               {awayTeam.name}
             </div>
           </div>
@@ -96,25 +108,34 @@ export const PredictionCard: React.FC<PredictionCardProps> = ({
       </div>
 
       {/* Prediction Body */}
-      <div className="p-6 flex-1">
-        <div className="text-xs font-black text-slate-400 uppercase tracking-[0.1em] mb-4">
-          {predictionTitle}
+      <div className="p-8 flex-1 flex flex-col">
+        <div className="flex justify-between items-center mb-6">
+          <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
+            {predictionTitle}
+          </div>
+          <div className="flex gap-2">
+            {['Trending', 'Boosted'].map(tag => (
+              <span key={tag} className="text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-md bg-slate-50 text-slate-400 border border-slate-100">
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
         
-        <div className="grid grid-cols-3 gap-3 mb-6">
+        <div className="grid grid-cols-3 gap-4 mb-8">
           {options.map((opt, i) => (
             <motion.button 
               key={i} 
-              whileHover={{ y: -2 }}
+              whileHover={{ y: -4, borderColor: '#10b981', backgroundColor: '#f0fdf4' }}
               whileTap={{ scale: 0.98 }}
               onClick={() => onSelect(opt.label)}
               disabled={isLoading}
-              className="p-3 rounded-2xl border border-slate-100 bg-white text-slate-900 shadow-sm hover:border-emerald-200 transition-all text-center disabled:opacity-50"
+              className="p-4 rounded-2xl border border-slate-100 bg-white text-slate-900 shadow-sm transition-all text-center disabled:opacity-50 group/opt"
             >
-              <div className="text-[9px] font-bold mb-1 uppercase text-slate-400">
+              <div className="text-[10px] font-bold mb-1.5 uppercase text-slate-400 group-hover/opt:text-emerald-600 transition-colors">
                 {opt.label}
               </div>
-              <div className="text-sm font-black italic">
+              <div className="text-lg font-black italic tracking-tight">
                 {opt.odds}
               </div>
             </motion.button>
@@ -122,21 +143,21 @@ export const PredictionCard: React.FC<PredictionCardProps> = ({
         </div>
 
         <motion.button 
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={{ scale: 1.01, backgroundColor: '#0f172a' }}
+          whileTap={{ scale: 0.99 }}
           onClick={() => onSelect('PREDICT_CTA')}
           disabled={isLoading}
-          className="w-full bg-slate-900 text-white rounded-2xl py-4 font-black text-sm shadow-xl flex items-center justify-center gap-2 group/btn disabled:opacity-50 transition-all"
+          className="w-full bg-slate-900 text-white rounded-2xl py-5 font-black text-sm shadow-2xl flex items-center justify-center gap-3 group/btn disabled:opacity-50 transition-all mt-auto"
         >
           {isLoading ? (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <div className="w-4 h-4 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin" />
               Processing...
             </div>
           ) : (
             <>
               Predict Now 
-              <ChevronRight size={18} className="group-hover/btn:translate-x-1 transition-transform text-emerald-400" />
+              <ChevronRight size={20} className="group-hover/btn:translate-x-1.5 transition-transform text-emerald-400" />
             </>
           )}
         </motion.button>
