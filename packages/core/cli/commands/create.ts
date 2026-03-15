@@ -1,6 +1,10 @@
 import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const createCommand = async (appName: string, options: { template: string }) => {
   const targetDir = path.resolve(process.cwd(), appName);
