@@ -1,11 +1,18 @@
 # SportFi Kit
 
-SportFi Kit is a collection of tools for developers building fan engagement apps on the Chiliz blockchain. It includes a React component library, a set of hooks, and a command-line tool.
+SportFi Kit is a specialized development suite for building fan engagement applications on the **Chiliz Chain**. It provides the missing bridge between the **Socios.com** ecosystem and the decentralized web, offering tools for token-gating, trustless wagering, and real-time sports data integration.
+
+## Why SportFi Kit?
+
+*   **Environment Detection**: Automatically adjusts UI for Socios.com Wallet Browser and Telegram Mini Apps.
+*   **Trustless Primitives**: Move betting and voting logic from your servers to verified smart contracts.
+*   **Rapid Scaffolding**: Spin up production-ready sports dApps in seconds using high-fidelity templates.
 
 ## Project Structure
 
-*   core: The main library containing components, hooks, and the command-line tool.
-*   docs-site: The website showing how to use the kit.
+*   **/packages/core**: The main library (React components, hooks, CLI).
+*   **/docs-site**: The comprehensive documentation and showcase site.
+*   **/contracts**: Ready-to-use smart contracts for P2P wagering and predictions.
 
 ## Key Features
 

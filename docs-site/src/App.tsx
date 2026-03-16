@@ -7,6 +7,7 @@ import { Examples } from './components/Examples';
 import { UsageGuide } from './components/UsageGuide';
 import { ApiReference } from './components/ApiReference';
 import { WhatYouCanBuild } from './components/WhatYouCanBuild';
+import { Architecture } from './components/Architecture';
 import { SociosGuide } from './components/SociosGuide';
 import { SportFiKitProvider } from 'sportfi-kit';
 
@@ -71,6 +72,7 @@ function App() {
                 <Features />
                 <Quickstart />
                 <Examples />
+                <Architecture />
                 <WhatYouCanBuild />
                 <UsageGuide />
                 <ApiReference />
