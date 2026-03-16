@@ -73,7 +73,7 @@ export const WhatYouCanBuild = () => {
             </div>
           </div>
           <a 
-            href="file:///Users/daddy/.gemini/antigravity/brain/cd19199a-c26a-4b0a-88cb-17c383624799/product_scenarios.md" 
+            href="#scenarios" 
             className="text-emerald-400 font-bold hover:text-emerald-300 transition-colors flex items-center gap-2"
           >
             Read Guide <ArrowRight size={16} />

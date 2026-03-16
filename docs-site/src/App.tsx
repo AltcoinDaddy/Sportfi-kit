@@ -8,6 +8,8 @@ import { UsageGuide } from './components/UsageGuide';
 import { ApiReference } from './components/ApiReference';
 import { WhatYouCanBuild } from './components/WhatYouCanBuild';
 import { Architecture } from './components/Architecture';
+import { EcosystemGuide } from './components/EcosystemGuide';
+import { ProductScenarios } from './components/ProductScenarios';
 import { SociosGuide } from './components/SociosGuide';
 import { SportFiKitProvider } from 'sportfi-kit';
 
@@ -73,7 +75,9 @@ function App() {
                 <Quickstart />
                 <Examples />
                 <Architecture />
+                <EcosystemGuide />
                 <WhatYouCanBuild />
+                <ProductScenarios />
                 <UsageGuide />
                 <ApiReference />
                 <SociosGuide />
