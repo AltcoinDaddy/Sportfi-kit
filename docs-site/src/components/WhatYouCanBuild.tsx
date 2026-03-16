@@ -1,5 +1,5 @@
 
-import { Target, Vote, Lock, Ticket, Info, Trophy, FileText, ArrowRight } from 'lucide-react';
+import { Target, Vote, Lock, Ticket, Info, Trophy } from 'lucide-react';
 
 const ideas = [
   { 
@@ -60,24 +60,6 @@ export const WhatYouCanBuild = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-20 p-8 rounded-2xl bg-slate-800/50 border border-slate-700 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-emerald-400/10 flex items-center justify-center text-emerald-400">
-               <FileText size={24} />
-            </div>
-            <div>
-              <h4 className="text-lg font-bold">Deep Dive: Product Scenarios</h4>
-              <p className="text-slate-400 text-sm">Read our detailed guide on deploying specific fan experiences.</p>
-            </div>
-          </div>
-          <a 
-            href="#scenarios" 
-            className="text-emerald-400 font-bold hover:text-emerald-300 transition-colors flex items-center gap-2"
-          >
-            Read Guide <ArrowRight size={16} />
-          </a>
         </div>
       </div>
     </section>
