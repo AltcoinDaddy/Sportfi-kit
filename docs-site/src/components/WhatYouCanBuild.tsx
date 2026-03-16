@@ -5,8 +5,8 @@ const ideas = [
   { icon: Target, title: 'Prediction Markets', desc: 'Allow fans to bet on game outcomes or player stats using CHZ.' },
   { icon: Lock, title: 'Gated Content', desc: 'Exclusive locker room footage or interviews for token holders.' },
   { icon: Vote, title: 'Live Fan Polls', desc: 'Real-time voting on MVP, kits, or match-day music.' },
-  { icon: Trophy, title: 'NFT Minting', desc: 'Rewarding loyal fans with digital collectibles for attendance.' },
-  { icon: Ticket, title: 'Fan Rewards', desc: 'Trade tokens for physical merchandise or VIP experiences.' },
+  { icon: Trophy, title: 'P2P Wagering Pools', desc: 'Trustless, decentralized pool wagering directly on Chiliz Chain.' },
+  { icon: Ticket, title: 'Socios Check-ins', desc: 'Geofenced rewards for fans physically attending the stadium.' },
   { icon: Info, title: 'Pyth Sports Feed', desc: 'Interactive trivia using real-time sports oracle data.' },
 ];
 

@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
-import { PredictionCard, FanTokenGate, PollCard } from 'sportfi-kit';
+import { PredictionCard, PollCard, WagerCard } from 'sportfi-kit';
 
 const PredictionScreen = () => (
   <div className="h-full bg-slate-50 flex flex-col">
@@ -21,25 +20,6 @@ const PredictionScreen = () => (
   </div>
 );
 
-const GateScreen = () => (
-  <div className="h-full bg-slate-900 flex flex-col text-white relative overflow-hidden">
-    <FanTokenGate
-      tokenAddress="0x..."
-      tokenSymbol="ACM"
-      minBalance={10}
-      label="Locker Room"
-      className="h-full border-none rounded-none"
-    >
-      <div className="p-8 flex flex-col items-center justify-center h-full">
-        <div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mb-6">
-          <CheckCircle2 size={40} className="text-white" />
-        </div>
-        <h4 className="text-xl font-bold mb-2">Access Granted</h4>
-        <p className="text-slate-400 text-sm">Welcome to the Locker Room.</p>
-      </div>
-    </FanTokenGate>
-  </div>
-);
 
 const PollScreen = () => (
   <div className="h-full bg-white flex flex-col">
@@ -57,9 +37,25 @@ const PollScreen = () => (
   </div>
 );
 
+const WagerScreen = () => (
+  <div className="h-full bg-slate-950 flex flex-col">
+    <WagerCard 
+      className="h-full border-none shadow-none rounded-none p-6"
+      matchName="Champions Final"
+      homeTeam="Real Madrid"
+      awayTeam="Man City"
+      totalVolume={BigInt(5000 * 1e18)}
+      homePool={BigInt(2500 * 1e18)}
+      awayPool={BigInt(1500 * 1e18)}
+      drawPool={BigInt(1000 * 1e18)}
+      onPlaceWager={(id, amt) => console.log('Wager:', id, amt)}
+    />
+  </div>
+);
+
 const exampleApps = [
   { title: 'Prediction Market', theme: 'emerald-600', screen: 'prediction', component: PredictionScreen },
-  { title: 'Fan Token Gate', theme: 'slate-900', screen: 'gate', component: GateScreen },
+  { title: 'P2P Wagering', theme: 'slate-950', screen: 'wager', component: WagerScreen },
   { title: 'Live Fan Poll', theme: 'emerald-700', screen: 'poll', component: PollScreen },
 ];
 
@@ -88,7 +84,7 @@ export const Examples = () => {
         </div>
         
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 items-center"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-24 items-center"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
