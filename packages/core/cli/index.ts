@@ -9,7 +9,7 @@ const cli = cac('sportfi-kit');
 
 cli
   .command('create <app-name>', 'Scaffold a new SportFi mini-app')
-  .option('--template <template>', 'Template to use (basic, prediction-market, fan-token-gate, live-poll)', { default: 'basic' })
+  .option('--template <template>', 'Template to use (basic, prediction-market, p2p-wagering, fan-token-gate, live-poll)', { default: 'basic' })
   .action(async (appName, options) => {
     console.log(chalk.hex('#059669')(`\n⚽ SportFi Kit: Creating "${appName}"...`));
     await createCommand(appName, options);
@@ -30,6 +30,6 @@ cli
   });
 
 cli.help();
-cli.version('1.0.0');
+cli.version('2.0.0-alpha.1');
 
 cli.parse();

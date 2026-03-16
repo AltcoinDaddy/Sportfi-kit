@@ -27,7 +27,13 @@ export const createCommand = async (appName: string, options: { template: string
   }
 
   if (!fs.existsSync(templateDir)) {
+    const templatesDir = fs.existsSync(sourcePath) ? path.dirname(sourcePath) : path.dirname(buildPath);
+    const availableTemplates = fs.readdirSync(templatesDir).filter(f => fs.statSync(path.join(templatesDir, f)).isDirectory());
+    
     console.error(chalk.red(`\n  ✖ Error: Template "${options.template}" not found.`));
+    console.log('\n' + chalk.bold('  Available templates:'));
+    availableTemplates.forEach(t => console.log(`    - ${chalk.cyan(t)}`));
+    console.log('\n');
     process.exit(1);
   }
 
