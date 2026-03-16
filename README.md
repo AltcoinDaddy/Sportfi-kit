@@ -1,48 +1,30 @@
-<div align="center">
-  <img src="packages/core/assets/logo.png" width="120" height="120" alt="SportFi Kit Logo" />
-  <h1>SportFi Kit Monorepo</h1>
-  <p><b>Modern Web3 components for the Chiliz Stadium of Tomorrow.</b></p>
-</div>
+# SportFi Kit
 
-SportFi Kit is a modern React component library, collection of hooks, and CLI tool designed specifically for developers building dApps for the Socios.com Wallet Browser and Telegram Mini-App ecosystems.
+SportFi Kit is a collection of tools for developers building fan engagement apps on the Chiliz blockchain. It includes a React component library, a set of hooks, and a command-line tool.
 
-## Structure
+## Project Structure
 
-- `packages/core`: The main SportFi Kit package (components, hooks, CLI).
-- `docs-site`: The documentation site built with Vite and React.
-- `cli`: CLI source code (linked to `packages/core/cli`).
+*   core: The main library containing components, hooks, and the command-line tool.
+*   docs-site: The website showing how to use the kit.
 
 ## Key Features
 
-- **Built for Chiliz Chain**: Hard-coded support for Mainnet (88888) and Spicy Testnet (88882).
-- **Embedded Browser Optimized**: Automatic detection and support for Socios.com and Telegram browser environments.
-- **Fan Token Infrastructure**: Ready-to-use components for Fan Token gating and balance tracking.
-- **SportFi Components**: Prediction cards, voting hooks, and Pyth oracle integration out of the box.
+*   Support for the Chiliz Chain.
+*   Tools for checking Fan Token balances.
+*   Components for sports predictions and fan polls.
+*   A command-line tool to set up new projects quickly.
 
-## Development
+## Installation
 
-### Prerequisites
-
-- Node.js >= 18
-- npm
-
-### Installation
+To install all dependencies in the project:
 
 ```bash
 npm install
 ```
 
-### Building
+## Running the Documentation Site
 
-Build all workspaces:
-
-```bash
-npm run build
-```
-
-### Documentation Site
-
-Run the documentation site locally:
+To run the documentation site locally:
 
 ```bash
 npm run dev --workspace=sportfi-kit-docs
@@ -50,12 +32,9 @@ npm run dev --workspace=sportfi-kit-docs
 
 ## Documentation
 
-The live documentation is available at **[www.sportfikit.online](https://www.sportfikit.online)**.
-
-## Contributing
-
-Contributions are welcome! Please see our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) for more information.
+The live documentation is available at:
+https://www.sportfikit.online
 
 ## License
 
-MIT
+This project is licensed under the MIT License.

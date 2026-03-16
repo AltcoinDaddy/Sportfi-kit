@@ -1,23 +1,18 @@
-<div align="center">
-  <img src="assets/logo.png" width="80" height="80" alt="SportFi Kit Logo" />
-  <h1>sportfi-kit</h1>
-  <p><b>The modern SDK for Chiliz Chain fan engagement.</b></p>
-</div>
+# SportFi Kit
 
-SportFi Kit is a modern React component library, collection of hooks, and CLI tool designed specifically for developers building dApps for the Socios.com Wallet Browser and Telegram Mini-App ecosystems.
+SportFi Kit is a development suite for building fan engagement applications on the Chiliz Chain. It provides smart contracts, React components, and a command-line tool to help developers create sports-related decentralized applications.
 
-## Key Features
+## Main Features
 
-- **Built for Chiliz Chain**: Hard-coded support for Mainnet (88888) and Spicy Testnet (88882).
-- **Embedded Browser Optimized**: Automatic detection and support for Socios.com and Telegram browser environments.
-- **Fan Token Infrastructure**: Ready-to-use components for Fan Token gating and balance tracking.
-- **SportFi Components**: Prediction cards, voting hooks, and Pyth oracle integration out of the box.
-- **Modern Tech Stack**: React 19, Reown AppKit, Wagmi v2, Viem v2, and TanStack Query v5.
-- **Premium Aesthetic**: Minimalist, high-contrast design system featuring Emerald-600 accents.
-- **Feedback-First UI**: Built-in **Skeleton Loaders** for all cards and **ActionToast** for transaction feedback.
-- **Stabilized Provider**: Production-ready singleton pattern ensures reliable wallet connections.
+*   **P2P Wagering**: Smart contracts and components for peer-to-peer betting pools.
+*   **Fan Token Support**: Tools to check Fan Token balances and restrict content based on token ownership.
+*   **Match Data**: Components for displaying match predictions and live poll results.
+*   **CLI Tool**: A command-line interface to quickly set up new projects with pre-built templates.
+*   **Design System**: A consistent visual style for sports applications.
 
 ## Installation
+
+You can install the package using npm:
 
 ```bash
 npm install sportfi-kit
@@ -25,69 +20,51 @@ npm install sportfi-kit
 
 ## Quick Start
 
-### 1. Configure Provider
+The easiest way to start is by using the CLI tool to create a new project:
 
-Wrap your application with the `SportFiKitProvider` at the root.
+```bash
+npx sportfi-kit create my-app --template p2p-wagering
+```
+
+Alternatively, you can add it to an existing React project:
 
 ```tsx
-import { SportFiKitProvider } from 'sportfi-kit';
+import { SportFiKitProvider, ConnectButton, WagerCard } from 'sportfi-kit';
 
 function App() {
   return (
     <SportFiKitProvider config={{ reownProjectId: 'YOUR_PROJECT_ID' }}>
-      <YourAppContent />
+      <ConnectButton />
+      <WagerCard 
+        matchName="Champions League Final"
+        homeTeam="Team A"
+        awayTeam="Team B"
+        totalVolume={1000n}
+        homePool={500n}
+        awayPool={300n}
+        drawPool={200n}
+        onPlaceWager={(id, amount) => console.log(id, amount)}
+      />
     </SportFiKitProvider>
   );
 }
 ```
 
-### 2. Connect Wallet
+## Project Templates
 
-Use the pre-styled `ConnectButton` or the `useSportFiConnect` hook.
+The CLI includes several templates to help you get started:
 
-```tsx
-import { ConnectButton, useSportFiConnect } from 'sportfi-kit';
-
-function Header() {
-  const { isConnected, address } = useSportFiConnect();
-  
-  return (
-    <nav>
-      <ConnectButton />
-      {isConnected && <span>Connected: {address}</span>}
-    </nav>
-  );
-}
-```
-
-## CLI Tools
-
-SportFi Kit comes with a powerful CLI to scaffold new projects in seconds.
-
-```bash
-# Scaffold a new mini-app
-npx sportfi-kit create my-app --template prediction-market
-
-# Add examples to existing project
-npx sportfi-kit add-example live-poll
-```
-
-Available templates:
-
-- `basic`: Minimalism at its finest.
-- `prediction-market`: Full Chiliz-integrated prediction UI.
-- `fan-token-gate`: Content locking based on Fan Token ownership.
-- `live-poll`: Real-time on-chain voting.
+*   **p2p-wagering**: A template for decentralized betting pools.
+*   **prediction-market**: A template for match outcome predictions.
+*   **live-poll**: A template for real-time fan voting.
+*   **fan-token-gate**: A template for content restricted to token holders.
+*   **basic**: A simple starting point for custom applications.
 
 ## Documentation
 
-For full API reference, component guides, and Socios integration tips, visit our documentation site:
-**[www.sportfikit.online](https://www.sportfikit.online)**
-
-## Contributing
-
-Contributions are welcome! Please see our [Contributing Guidelines](../../CONTRIBUTING.md) and [Code of Conduct](../../CODE_OF_CONDUCT.md) for more information.
+Full documentation and guides are available at:
+https://www.sportfikit.online
 
 ## License
 
-MIT
+This project is licensed under the MIT License.
