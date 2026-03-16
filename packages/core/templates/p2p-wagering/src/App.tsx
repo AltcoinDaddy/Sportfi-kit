@@ -1,4 +1,4 @@
-import { SportFiKitProvider, SafeAreaWrapper, WagerCard, ConnectButton, ActionToast, useWagerPool } from 'sportfi-kit';
+import { SafeAreaWrapper, WagerCard, ConnectButton, ActionToast, useWagerPool } from 'sportfi-kit';
 import { useState } from 'react';
 
 function App() {
@@ -24,45 +24,43 @@ function App() {
   };
 
   return (
-    <SportFiKitProvider config={{ reownProjectId: '744927b2671542f7d93416e9d6d51a66' }}>
-      <SafeAreaWrapper className="min-h-screen bg-slate-950 p-6">
-        <header className="flex justify-between items-center mb-16">
-          <div className="flex items-center gap-3">
-            <img src="/logo.png" className="w-10 h-10 object-contain" alt="SportFi Logo" />
-            <span className="font-black text-2xl text-white tracking-tighter italic">SETTLE-IT <span className="text-emerald-500">P2P</span></span>
-          </div>
-          <ConnectButton />
-        </header>
+    <SafeAreaWrapper className="min-h-screen bg-slate-950 p-6">
+      <header className="flex justify-between items-center mb-16">
+        <div className="flex items-center gap-3">
+          <img src="/logo.png" className="w-10 h-10 object-contain" alt="SportFi Logo" />
+          <span className="font-black text-2xl text-white tracking-tighter italic">SETTLE-IT <span className="text-emerald-500">P2P</span></span>
+        </div>
+        <ConnectButton />
+      </header>
 
-        <main className="max-w-2xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-black text-white mb-4 tracking-tighter">Matchday Wagering</h1>
-            <p className="text-white/40 font-medium">Bet against other fans. Trustless. Automated. Elite.</p>
-          </div>
+      <main className="max-w-2xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-black text-white mb-4 tracking-tighter">Matchday Wagering</h1>
+          <p className="text-white/40 font-medium">Bet against other fans. Trustless. Automated. Elite.</p>
+        </div>
 
-          <WagerCard 
-            matchName={matchData.matchName}
-            homeTeam={matchData.homeTeam}
-            awayTeam={matchData.awayTeam}
-            totalVolume={matchData.totalVolume}
-            homePool={matchData.homePool}
-            awayPool={matchData.awayPool}
-            drawPool={matchData.drawPool}
-            onPlaceWager={handleWager}
-            isLoading={isSubmitting}
-          />
-        </main>
-
-        <ActionToast 
-          isVisible={isSubmitting || isConfirmed || isError}
-          status={isError ? 'error' : isConfirmed ? 'success' : 'pending'}
-          title={isError ? "Transaction Error" : isConfirmed ? "Success" : "Processing"}
-          message={isError ? error?.message || "Wager failed" : isConfirmed ? "Wager Confirmed! 🚀" : "Confirming Wager..."}
-          txHash={txHash}
-          onClose={() => {}}
+        <WagerCard 
+          matchName={matchData.matchName}
+          homeTeam={matchData.homeTeam}
+          awayTeam={matchData.awayTeam}
+          totalVolume={matchData.totalVolume}
+          homePool={matchData.homePool}
+          awayPool={matchData.awayPool}
+          drawPool={matchData.drawPool}
+          onPlaceWager={handleWager}
+          isLoading={isSubmitting}
         />
-      </SafeAreaWrapper>
-    </SportFiKitProvider>
+      </main>
+
+      <ActionToast 
+        isVisible={isSubmitting || isConfirmed || isError}
+        status={isError ? 'error' : isConfirmed ? 'success' : 'pending'}
+        title={isError ? "Transaction Error" : isConfirmed ? "Success" : "Processing"}
+        message={isError ? error?.message || "Wager failed" : isConfirmed ? "Wager Confirmed! 🚀" : "Confirming Wager..."}
+        txHash={txHash}
+        onClose={() => {}}
+      />
+    </SafeAreaWrapper>
   );
 }
 

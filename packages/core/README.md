@@ -26,26 +26,34 @@ The easiest way to start is by using the CLI tool to create a new project:
 npx sportfi-kit create my-app --template p2p-wagering
 ```
 
-Alternatively, you can add it to an existing React project:
+Alternatively, you can add it to an existing React project. The provider should be used at the root level (e.g., in `main.tsx` or `App.tsx` if no hooks are called within `App` itself):
 
 ```tsx
-import { SportFiKitProvider, ConnectButton, WagerCard } from 'sportfi-kit';
+// 1. Wrap your app in main.tsx
+import { SportFiKitProvider } from 'sportfi-kit';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <SportFiKitProvider config={{ reownProjectId: 'YOUR_PROJECT_ID' }}>
+    <App />
+  </SportFiKitProvider>
+);
+
+// 2. Use hooks and components in App.tsx
+import { ConnectButton, WagerCard, useWagerPool } from 'sportfi-kit';
 
 function App() {
+  const { placeWager } = useWagerPool("0x...");
+
   return (
-    <SportFiKitProvider config={{ reownProjectId: 'YOUR_PROJECT_ID' }}>
+    <>
       <ConnectButton />
       <WagerCard 
         matchName="Champions League Final"
         homeTeam="Team A"
         awayTeam="Team B"
-        totalVolume={1000n}
-        homePool={500n}
-        awayPool={300n}
-        drawPool={200n}
-        onPlaceWager={(id, amount) => console.log(id, amount)}
+        onPlaceWager={(id, amount) => placeWager(0, id, amount)}
       />
-    </SportFiKitProvider>
+    </>
   );
 }
 ```

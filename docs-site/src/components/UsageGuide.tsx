@@ -23,6 +23,12 @@ function Root() {
       <App />
     </SportFiKitProvider>
   );
+}
+
+// CRITICAL: App.tsx must be a child to use hooks!
+function App() {
+  const { isConnected } = useSportFiConnect();
+  return <div>...</div>
 }`}
 </pre>
             </div>
