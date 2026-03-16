@@ -31,10 +31,10 @@ export const Hero = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-[0.2em] mb-10 shadow-2xl shadow-emerald-500/10"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-[0.2em] mb-10"
         >
           <Sparkles className="w-3.5 h-3.5" />
-          SportFi v2.0-alpha.1: The God-Mode Era
+          The Web3 Toolkit for Chiliz Chain
         </motion.div>
 
         <motion.h1 
