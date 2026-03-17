@@ -70,6 +70,8 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^12.20.55"
+    "@types/node": "^12.20.55",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
   }
 }
