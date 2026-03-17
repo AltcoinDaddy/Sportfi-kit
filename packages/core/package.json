@@ -1,6 +1,6 @@
 {
   "name": "sportfi-kit",
-  "version": "2.0.0-alpha.7",
+  "version": "2.0.0-alpha.8",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AltcoinDaddy/Sportfi-kit.git"
@@ -24,7 +24,7 @@
     "./package.json": "./package.json"
   },
   "bin": {
-    "sportfi-kit": "./dist/cli/index.js"
+    "sportfi-kit": "dist/cli/index.js"
   },
   "files": [
     "dist",
