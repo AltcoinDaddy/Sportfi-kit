@@ -30,6 +30,6 @@ cli
   });
 
 cli.help();
-cli.version('2.0.0-alpha.1');
+cli.version('2.0.0-alpha.10');
 
 cli.parse();

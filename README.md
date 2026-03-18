@@ -12,7 +12,7 @@ SportFi Kit is a specialized development suite for building fan engagement appli
 
 *   **/packages/core**: The main library (React components, hooks, CLI).
 *   **/docs-site**: The comprehensive documentation and showcase site.
-*   **/contracts**: Ready-to-use smart contracts for P2P wagering and predictions.
+*   **/packages/core/contracts**: Ready-to-use smart contracts for P2P wagering and predictions.
 
 ## Key Features
 

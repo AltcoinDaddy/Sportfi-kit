@@ -21,9 +21,11 @@ contract SportFiWagerPool {
     address public owner;
     uint256 public nextPoolId;
     uint256 public constant PROTOCOL_FEE = 2; // 2% fee
+    uint256 public accruedFees;
 
     mapping(uint256 => Pool) public pools;
     mapping(uint256 => mapping(address => mapping(uint256 => uint256))) public stakes;
+    mapping(uint256 => mapping(address => bool)) public hasClaimed;
 
     event PoolCreated(uint256 indexed poolId, string matchName);
     // outcomeId mapping: 1 = Home, 2 = Away, 3 = Draw
@@ -80,25 +82,33 @@ contract SportFiWagerPool {
         p.settled = true;
         p.winningOutcome = _winningOutcome;
 
+        // Calculate and accrue the protocol fee from the total volume
+        uint256 fee = (p.totalVolume * PROTOCOL_FEE) / 100;
+        accruedFees += fee;
+
         emit PoolSettled(_poolId, _winningOutcome);
     }
 
     function claimWinnings(uint256 _poolId) external {
         Pool storage p = pools[_poolId];
         require(p.settled, "Not settled");
+        require(!hasClaimed[_poolId][msg.sender], "Already claimed");
         
         uint256 userStake = stakes[_poolId][msg.sender][p.winningOutcome];
         require(userStake > 0, "No winning stake");
 
         uint256 winningPool = p.outcomePools[p.winningOutcome];
         
-        // Payout = (UserStake / WinningPool) * (TotalVolume * (100 - Fee) / 100)
+        // Payout = (UserStake / WinningPool) * (TotalVolume - Fee)
         uint256 netVolume = (p.totalVolume * (100 - PROTOCOL_FEE)) / 100;
         uint256 payout = (userStake * netVolume) / winningPool;
 
-        stakes[_poolId][msg.sender][p.winningOutcome] = 0; // Prevent re-entry
+        // Prevent re-entry and double claims
+        hasClaimed[_poolId][msg.sender] = true;
+        stakes[_poolId][msg.sender][p.winningOutcome] = 0;
         
-        payable(msg.sender).transfer(payout);
+        (bool success, ) = payable(msg.sender).call{value: payout}("");
+        require(success, "Transfer failed");
         
         emit WinningsClaimed(_poolId, msg.sender, payout);
     }
@@ -107,7 +117,15 @@ contract SportFiWagerPool {
         return pools[_poolId].outcomePools[_outcomeId];
     }
 
+    /**
+     * @dev Withdraw only the accrued protocol fees, not user funds.
+     */
     function withdrawFees() external onlyOwner {
-        payable(owner).transfer(address(this).balance);
+        uint256 fees = accruedFees;
+        require(fees > 0, "No fees to withdraw");
+        accruedFees = 0;
+        
+        (bool success, ) = payable(owner).call{value: fees}("");
+        require(success, "Transfer failed");
     }
 }

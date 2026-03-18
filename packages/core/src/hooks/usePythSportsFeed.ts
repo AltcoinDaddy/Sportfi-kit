@@ -7,10 +7,14 @@ export interface PythData {
 }
 
 /**
- * Hook to fetch real-time sports feed data using Pyth Network oracles.
- * Optimized for Chiliz Chain mini-apps.
+ * Hook to fetch sports feed data using Pyth Network oracles.
+ * 
+ * **⚠️ MOCK IMPLEMENTATION**: This hook currently returns simulated data
+ * for development and prototyping purposes. For production, integrate the
+ * real Pyth SDK: `@pythnetwork/pyth-evm-js`.
  * 
  * @param priceFeedId The Pyth Price Feed ID
+ * @see https://docs.pyth.network/price-feeds/use-real-time-data/evm
  */
 export const usePythSportsFeed = (priceFeedId: string) => {
   const [data, setData] = useState<PythData | null>(null);
@@ -21,8 +25,15 @@ export const usePythSportsFeed = (priceFeedId: string) => {
     setIsLoading(true);
     setError(null);
     try {
-      // In a production environment, this would call the Pyth EVM contract 
-      // or use @pythnetwork/pyth-evm-js
+      // ⚠️ MOCK: Replace with real Pyth EVM contract call or @pythnetwork/pyth-evm-js
+      if (typeof console !== 'undefined') {
+        console.warn(
+          '[SportFi Kit] usePythSportsFeed is using MOCK data. ' +
+          'For production, integrate @pythnetwork/pyth-evm-js. ' +
+          'See: https://docs.pyth.network/price-feeds/use-real-time-data/evm'
+        );
+      }
+      
       await new Promise(resolve => setTimeout(resolve, 800));
       
       setData({

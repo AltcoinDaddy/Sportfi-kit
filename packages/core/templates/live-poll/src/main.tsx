@@ -6,7 +6,8 @@ import './index.css'
 import { SportFiKitProvider } from 'sportfi-kit'
 
 const config = {
-  reownProjectId: '744927b2671542f7d93416e9d6d51a66',
+  // Get your free Project ID at https://cloud.reown.com
+  reownProjectId: import.meta.env.VITE_REOWN_PROJECT_ID || '',
 }
 
 createRoot(document.getElementById('root')!).render(

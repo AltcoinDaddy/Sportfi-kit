@@ -12,7 +12,7 @@ import { SportFiKitProvider } from 'sportfi-kit';
 
 function App() {
   return (
-    <SportFiKitProvider config={{ reownProjectId: 'bd56f634560b43063fc3a3b069d2a23e' }}>
+    <SportFiKitProvider config={{ reownProjectId: import.meta.env.VITE_REOWN_PROJECT_ID || '' }}>
       <div className="min-h-screen bg-mesh font-sans selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden">
         <AnimatePresence>
           <motion.div

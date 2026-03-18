@@ -1,10 +1,9 @@
-import { useWriteContract, useWaitForTransactionReceipt, useReadContract } from 'wagmi';
+import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseEther } from 'viem';
 
 export interface UseWagerPoolReturn {
   placeWager: (poolId: number, outcomeId: number, amount: string) => Promise<void>;
   claimWinnings: (poolId: number) => Promise<void>;
-  getOutcomeVolume: (poolId: number, outcomeId: number) => bigint | undefined;
   isSubmitting: boolean;
   isConfirming: boolean;
   isConfirmed: boolean;
@@ -13,7 +12,7 @@ export interface UseWagerPoolReturn {
   txHash: `0x${string}` | undefined;
 }
 
-const WAGER_POOL_ABI = [
+export const WAGER_POOL_ABI = [
   {
     name: 'placeWager',
     type: 'function',
@@ -46,6 +45,9 @@ const WAGER_POOL_ABI = [
 /**
  * Hook to interact with the SportFiWagerPool contract.
  * Primary financial primitive for v2.0 P2P wagering.
+ * 
+ * For reading outcome volumes, use wagmi's `useReadContract` directly
+ * with the exported `WAGER_POOL_ABI`.
  */
 export const useWagerPool = (contractAddress: string): UseWagerPoolReturn => {
   const { 
@@ -82,20 +84,9 @@ export const useWagerPool = (contractAddress: string): UseWagerPoolReturn => {
     });
   };
 
-  const getOutcomeVolume = (poolId: number, outcomeId: number) => {
-    const { data } = useReadContract({
-      address: contractAddress as `0x${string}`,
-      abi: WAGER_POOL_ABI,
-      functionName: 'getOutcomeVolume',
-      args: [BigInt(poolId), BigInt(outcomeId)],
-    });
-    return data;
-  };
-
   return {
     placeWager,
     claimWinnings,
-    getOutcomeVolume,
     isSubmitting,
     isConfirming,
     isConfirmed,

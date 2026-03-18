@@ -11,7 +11,7 @@ function App() {
   };
 
   return (
-    <SportFiKitProvider config={{ reownProjectId: '744927b2671542f7d93416e9d6d51a66' }}>
+    <SportFiKitProvider config={{ reownProjectId: import.meta.env.VITE_REOWN_PROJECT_ID || '' }}>
       <SafeAreaWrapper className="p-4">
         <header className="flex justify-between items-center mb-12">
           <span className="font-black text-2xl text-emerald-600 tracking-tighter">PREDICTION MARKET</span>
