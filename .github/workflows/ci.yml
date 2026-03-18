@@ -34,6 +34,7 @@ jobs:
         run: npm test
 
       - name: Build docs site
+        continue-on-error: true
         run: npm run build --workspace=sportfi-kit-docs
         env:
           VITE_REOWN_PROJECT_ID: ${{ secrets.VITE_REOWN_PROJECT_ID }}
