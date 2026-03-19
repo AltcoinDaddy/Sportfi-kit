@@ -1,4 +1,4 @@
-import { describe, it, expect, afterEach } from 'vitest';
+import { describe, it, expect, afterEach, vi } from 'vitest';
 import { detectSociosBrowser, closeSociosMiniApp } from '../packages/core/src/utils/detectSociosBrowser';
 
 describe('detectSociosBrowser', () => {
