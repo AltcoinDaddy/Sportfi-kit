@@ -7,7 +7,11 @@ export function QuickstartDoc() {
       <h2 id="step-1">1. Create a new project</h2>
       <pre className="doc-code"><code>{`npx sportfi-kit create my-app --template basic`}</code></pre>
 
-      <h2 id="step-2">2. Set your environment variable</h2>
+      <h2 id="step-2">2. Configure Reown Project ID (Mandatory)</h2>
+      <div className="doc-important">
+        <strong>Required for Wallet Connections:</strong> To enable wallet connectivity 
+        (MetaMask, Socios, WalletConnect), you <strong>must</strong> provide a valid Project ID.
+      </div>
       <p>Create a <code>.env</code> file in your project root:</p>
       <pre className="doc-code"><code>{`VITE_REOWN_PROJECT_ID=your_project_id_here`}</code></pre>
       <p>

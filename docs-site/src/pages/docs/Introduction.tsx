@@ -16,6 +16,17 @@ export function Introduction() {
         Socios.com Browser and Telegram Mini Apps.
       </div>
 
+      <h2 id="prerequisites">Prerequisites</h2>
+      <p>Before you begin building with SportFi Kit, ensure you have the following:</p>
+      <ul>
+        <li>
+          <strong>Reown Project ID</strong>: Mandatory for wallet connectivity (MetaMask, Socios, WalletConnect). 
+          Get one for free at <a href="https://cloud.reown.com" target="_blank" rel="noopener noreferrer">cloud.reown.com</a>.
+        </li>
+        <li><strong>Node.js 18.x or later</strong>.</li>
+        <li><strong>React 18+</strong> development environment.</li>
+      </ul>
+
       <h2 id="the-chiliz-bridge">The Chiliz Bridge</h2>
       <p>
         Building on Chiliz requires more than just Ethereum-compatible tools. SportFi Kit provides 
