@@ -7,7 +7,14 @@ import { useSportFiConnect } from '../hooks/useSportFiConnect.js';
  * Enhanced with Framer Motion for a premium feel.
  */
 export const ConnectButton: React.FC<{ className?: string }> = ({ className = '' }) => {
-  const { address, isConnected, isConnecting, connect, disconnect } = useSportFiConnect();
+  const { address, isConnected, isConnecting, connect, disconnect, isSociosBrowser } = useSportFiConnect();
+
+  const handleDisconnect = () => {
+    // In Socios app, the wallet is managed by the native app, 
+    // we don't allow manual disconnect to keep UX seamless.
+    if (isSociosBrowser) return;
+    disconnect();
+  };
 
   const baseStyles = "bg-emerald-600 text-white rounded-lg px-6 py-2.5 hover:bg-emerald-700 transition-colors font-semibold shadow-md flex items-center justify-center gap-2";
 
@@ -19,10 +26,10 @@ export const ConnectButton: React.FC<{ className?: string }> = ({ className = ''
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={() => disconnect()}
-          className={`${baseStyles} ${className}`}
+          whileHover={!isSociosBrowser ? { scale: 1.02 } : {}}
+          whileTap={!isSociosBrowser ? { scale: 0.98 } : {}}
+          onClick={handleDisconnect}
+          className={`${baseStyles} ${className} ${isSociosBrowser ? 'cursor-default hover:bg-emerald-600' : ''}`}
         >
           <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
           {address.slice(0, 6)}...{address.slice(-4)}

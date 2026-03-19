@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0-alpha.12] - 2026-03-19
+
+### Optimization
+- Finalized Socios.com environment optimizations.
+- Added native "Close" button for mini-app navigation.
+- Improved `ConnectButton` behavior in embedded browsers.
+
 ## [2.0.0-alpha.11] - 2026-03-19
 
 ### Documentation

@@ -5,12 +5,15 @@ import {
   PredictionCard, 
   WagerCard, 
   PollCard,
-  ActionToast
+  ActionToast,
+  useSportFiConnect,
+  CloseMiniAppButton
 } from 'sportfi-kit';
 import { useState } from 'react';
 import { parseEther } from 'viem';
 
 function App() {
+  const { isSociosBrowser, isConnected } = useSportFiConnect();
   const [hasVoted, setHasVoted] = useState(false);
   const [userVoteId, setUserVoteId] = useState<string | number>();
   const [showToast, setShowToast] = useState(false);
@@ -41,7 +44,10 @@ function App() {
             <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest mt-1">Match Center</span>
           </div>
         </div>
-        <ConnectButton />
+        <div className="flex items-center gap-3">
+          {isSociosBrowser && <CloseMiniAppButton className="mr-2" />}
+          <ConnectButton />
+        </div>
       </header>
 
       <main className="px-6 space-y-10">

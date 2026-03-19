@@ -6,7 +6,11 @@ export const detectSociosBrowser = (): boolean => {
   
   const ua = window.navigator.userAgent.toLowerCase();
   // Socios browser typically includes 'socios' in its user agent string
-  return ua.includes('socios') || (window as any).isSociosBrowser === true;
+  return (
+    ua.includes('socios') || 
+    (window as any).isSociosBrowser === true || 
+    localStorage.getItem('DEBUG_SOCIOS') === 'true'
+  );
 };
 
 /**
