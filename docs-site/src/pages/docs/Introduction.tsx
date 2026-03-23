@@ -1,62 +1,123 @@
+import { Rocket, ShieldCheck, Zap, Layout, Terminal } from 'lucide-react';
+
 export function Introduction() {
   return (
     <article className="doc-article">
-      <h1>Introduction</h1>
-      <p className="doc-subtitle">The Engineering Foundation for Fan-Engagement on Chiliz</p>
+      <header className="mb-16">
+        <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold tracking-widest text-[11px] uppercase mb-4">
+          <Rocket className="h-4 w-4" />
+          <span>Scaffold CLI</span>
+        </div>
+        <h1 className="text-zinc-900 dark:text-white">Introduction</h1>
+        <p className="doc-subtitle text-zinc-500 dark:text-zinc-400">
+          A modern CLI for scaffolding production-ready apps for EVM Blockchains, optimized for
+          sports fan engagement.
+        </p>
+      </header>
 
-      <p>
-        <strong>SportFi Kit</strong> is a comprehensive software development kit (SDK) designed specifically 
-        for the <strong>Chiliz Chain</strong>. It enables developers to build high-performance 
-        "SportFi" applications—ranging from prediction markets and wagering pools to fan-token-gated 
-        experiences—with minimal boilerplate.
-      </p>
+      <section id="overview" className="doc-section-card relative overflow-hidden group">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-500/10 transition-colors duration-500" />
 
-      <div className="doc-warning">
-        <strong>Terminal Core v1.0</strong> — Optimized for high-concurrency environments like 
-        Socios.com Browser and Telegram Mini Apps.
+        <h2 className="flex items-center gap-3 border-none p-0 mb-6">
+          <Layout className="h-6 w-6 text-emerald-500" />
+          Overview
+        </h2>
+        <div className="space-y-4">
+          <p>
+            <strong className="text-zinc-900 dark:text-white font-semibold">SportFi Kit</strong> is
+            a modern CLI designed for developers scaffolding production-ready apps for{' '}
+            <strong className="text-zinc-900 dark:text-white font-semibold">EVM Blockchains</strong>
+            . It eliminates the boilerplate associated with Web3 sports apps, allowing you to focus
+            on the unique mechanics of your fan experience.
+          </p>
+          <p>
+            Whether you're building a prediction market, a wagering pool, or a custom fan-token
+            utility, SportFi Kit provides the reliable scaffold you need to ship faster and with
+            higher confidence.
+          </p>
+        </div>
+      </section>
+
+      <section className="doc-callout-info flex gap-4 my-12 p-4 rounded-md">
+        <Zap className="h-6 w-6 shrink-0 mt-0.5" />
+        <div>
+          <strong className="block mb-1 text-emerald-800 dark:text-emerald-200 uppercase tracking-widest text-[11px] font-bold">
+            Built for speed.
+          </strong>
+          The goal of SportFi Kit is to minimize the distance between a concept and a working
+          application, ensuring your codebase remains readable and highly composable from day one.
+        </div>
+      </section>
+
+      <section id="prerequisites" className="doc-section-card">
+        <h2 className="flex items-center gap-3 border-none p-0 mb-6 font-bold text-2xl tracking-tight">
+          <ShieldCheck className="h-6 w-6 text-emerald-500" />
+          Prerequisites
+        </h2>
+        <p className="mb-6 opacity-80">Everything you need before running the scaffold CLI:</p>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none p-0 m-0">
+          {[
+            {
+              title: 'Scaffold Template',
+              desc: 'Choose from prediction-market, wagering, or token-gate presets.',
+            },
+            {
+              title: 'Node.js 18+',
+              desc: 'Ensures compatibility with modern ESM modules and CLI features.',
+            },
+            {
+              title: 'EVM Wallet',
+              desc: 'Any standard EVM-compatible wallet for testing and deployment.',
+            },
+            {
+              title: 'Code Editor',
+              desc: 'VS Code or similar for working with the generated TSX/CSS.',
+            },
+          ].map((item, i) => (
+            <li
+              key={i}
+              className="p-4 rounded-xl border border-zinc-100 dark:border-white/5 bg-zinc-50/50 dark:bg-white/5 flex flex-col gap-1 hover:border-emerald-200 dark:hover:border-emerald-500/30 transition-colors duration-200"
+            >
+              <span className="font-bold text-zinc-900 dark:text-white text-sm tracking-tight">
+                {item.title}
+              </span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400">{item.desc}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <div id="installation" className="mt-16">
+        <section className="doc-section-card bg-emerald-950/5 dark:bg-emerald-500/5 border-emerald-100 dark:border-emerald-500/10 shadow-none">
+          <h2 className="flex items-center gap-3 border-none p-0 m-0 mb-6 font-bold text-2xl tracking-tight">
+            <Terminal className="h-6 w-6 text-emerald-500" />
+            Initialization
+          </h2>
+          <p className="mb-4 text-emerald-900/60 dark:text-emerald-100/40 text-sm">
+            Run the global create command to start the interactive scaffold wizard.
+          </p>
+          <div className="relative group/code">
+            <pre className="doc-code bg-zinc-900 p-6 rounded-xl border-zinc-800 overflow-x-auto m-0 shadow-2xl">
+              <code className="text-emerald-400 text-sm font-mono">
+                {`npx sportfi-kit create my-app`}
+              </code>
+            </pre>
+          </div>
+        </section>
       </div>
 
-      <h2 id="prerequisites">Prerequisites</h2>
-      <p>Before you begin building with SportFi Kit, ensure you have the following:</p>
-      <ul>
-        <li>
-          <strong>Reown Project ID</strong>: Mandatory for wallet connectivity (MetaMask, Socios, WalletConnect). 
-          Get one for free at <a href="https://cloud.reown.com" target="_blank" rel="noopener noreferrer">cloud.reown.com</a>.
-        </li>
-        <li><strong>Node.js 18.x or later</strong>.</li>
-        <li><strong>React 18+</strong> development environment.</li>
-      </ul>
-
-      <h2 id="the-chiliz-bridge">The Chiliz Bridge</h2>
-      <p>
-        Building on Chiliz requires more than just Ethereum-compatible tools. SportFi Kit provides 
-        the specialized logic needed to:
-      </p>
-      <ul>
-        <li><strong>Detect Environments</strong>: Seamlessly switch behavior between Socios.com, Telegram, and standard mobile browsers.</li>
-        <li><strong>Fan Token Utility</strong>: First-class support for gating content and actions based on $BAR, $JUV, $CITY, and other Fan Tokens.</li>
-        <li><strong>Trustless Wagering</strong>: Hardened contract interfaces for P2P sports wagering and outcome-based markets.</li>
-      </ul>
-
-      <h2 id="installation">Quick Install</h2>
-      <p>Install the core package and its peer dependencies (wagmi, viem):</p>
-      <pre className="doc-code"><code>{`npm install sportfi-kit wagmi viem @tanstack/react-query`}</code></pre>
-
-      <h2 id="philosophy">Core Philosophy</h2>
-      <p>
-        SportFi Kit follows a <strong>"Headless-First"</strong> approach. While we provide 
-        pre-styled components (like <code>PredictionCard</code>), the core logic is 
-        exposed through powerful React Hooks, giving you full control over your UI's aesthetic.
-      </p>
-
-      <h2 id="cli-scaffolding">Start with a Template</h2>
-      <p>The fastest way to see SportFi Kit in action is using our CLI tool:</p>
-      <pre className="doc-code"><code>{`npx sportfi-kit create my-app --template prediction-market`}</code></pre>
-
-      <p>
-        This will scaffold a production-ready Chiliz dApp with everything pre-configured: 
-        Reown connectivity, Chiliz RPCs, and basic UI patterns.
-      </p>
+      <section id="philosophy" className="mt-20 py-12 border-t border-zinc-100 dark:border-white/5">
+        <h2 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white mb-6">
+          Core Philosophy
+        </h2>
+        <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+          SportFi Kit follows a{' '}
+          <strong className="text-zinc-900 dark:text-white">scaffold-first</strong> approach. We
+          believe CLI tools should optimize the engineering foundation while giving you total
+          aesthetic control over the final interface. It's built for rapid iteration on any EVM
+          blockchian.
+        </p>
+      </section>
     </article>
   );
 }
