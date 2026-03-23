@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { SportFiLogo } from '../components/SportFiLogo';
 import { useState } from 'react';
 import { useTheme } from '../App';
+import { Sports3DStack } from '../components/Sports3DStack';
 import { ArrowRight, Layers3, Zap, Cpu, Code2, Sun, Moon } from 'lucide-react';
 
 const navLinks = [
@@ -159,32 +160,7 @@ export function LandingPage() {
 
             {/* Right Column (Graphics) */}
             <div className="hidden lg:flex flex-col items-center justify-center border-b border-zinc-100 dark:border-white/10 relative p-16 bg-white dark:bg-[#0A0A0A] overflow-hidden min-h-[600px]">
-              {/* Sporting Collage Graphic */}
-              <div className="relative w-full h-full flex items-center justify-center scale-90 xl:scale-100 z-10">
-                <div className="absolute w-64 h-80 border border-zinc-100 dark:border-white/10 rounded-3xl bg-zinc-50 dark:bg-[#0C0C0C] -rotate-6 transform -translate-x-12 translate-y-4 shadow-xl overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&q=80&w=400&h=600"
-                    alt="Track Running"
-                    className="w-full h-full object-cover grayscale opacity-80 dark:opacity-60"
-                  />
-                </div>
-
-                <div className="absolute w-56 h-72 border border-emerald-500/20 dark:border-emerald-500/40 rounded-3xl bg-white dark:bg-[#0A0A0A] overflow-hidden shadow-[0_0_80px_rgba(5,150,105,0.15)] dark:shadow-[0_0_80px_rgba(5,150,105,0.25)] transform z-20 transition-transform hover:-translate-y-4 hover:scale-105 duration-300">
-                  <img
-                    src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&q=80&w=500&h=700"
-                    alt="Soccer"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-4 left-0 w-full flex justify-center z-20">
-                    <div className="bg-white/80 dark:bg-white/10 backdrop-blur-md border border-zinc-200/50 dark:border-white/20 rounded-full px-4 py-1.5 flex items-center gap-2 shadow-lg">
-                      <SportFiLogo className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-                      <span className="text-zinc-900 dark:text-white text-xs font-bold tracking-wider uppercase">
-                        sportfi
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Sports3DStack />
             </div>
           </div>
 
