@@ -100,7 +100,7 @@ export function LandingPage() {
             {/* Left Column */}
             <div className="flex flex-col border-b lg:border-r border-zinc-100 dark:border-white/10 p-8 pt-16 lg:p-16 xl:p-24 relative overflow-hidden bg-white dark:bg-[#0A0A0A]">
               <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-zinc-800 dark:text-white leading-[1.05] mb-6 z-10 w-full max-w-[600px] text-balance">
-                SportFi Kit: Build mini-apps
+                SportFi Kit Build mini-apps
                  on Chiliz Chain
               </h1>
 
