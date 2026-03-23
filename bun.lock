@@ -6,6 +6,10 @@
       "name": "sportfi-kit-root",
       "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
+        "@types/react": "^19.2.14",
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.2.3",
+        "@types/react-dom": "^19.0.0",
         "@vitejs/plugin-react": "^4.3.4",
         "eslint": "^9.39.4",
         "eslint-config-prettier": "^10.1.8",
@@ -65,6 +69,8 @@
       "devDependencies": {
         "@types/fs-extra": "^11.0.4",
         "@types/node": "^12.20.55",
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
         "typescript": "^5.7.3",
         "vite": "^6.1.0",
       },

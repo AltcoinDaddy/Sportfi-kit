@@ -1,13 +1,13 @@
-import { 
-  ConnectButton, 
-  SafeAreaWrapper, 
-  FanTokenGate, 
-  PredictionCard, 
-  WagerCard, 
+import {
+  ConnectButton,
+  SafeAreaWrapper,
+  FanTokenGate,
+  PredictionCard,
+  WagerCard,
   PollCard,
   ActionToast,
   useSportFiConnect,
-  CloseMiniAppButton
+  CloseMiniAppButton,
 } from 'sportfi-kit';
 import { useState } from 'react';
 import { parseEther } from 'viem';
@@ -27,7 +27,7 @@ function App() {
   const handleVote = (id: string | number) => {
     setUserVoteId(id);
     setHasVoted(true);
-    setToastMessage("Vote recorded on Chiliz Chain!");
+    setToastMessage('Vote recorded on Chiliz Chain!');
     setShowToast(true);
   };
 
@@ -36,12 +36,16 @@ function App() {
       {/* Premium Header */}
       <header className="flex justify-between items-center px-6 py-8 mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-emerald-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-900/20">
-            <span className="text-white font-black text-xl italic mt-0.5">S</span>
+          <div className="p-2 bg-white rounded-2xl border border-slate-100 shadow-sm">
+            <img src="/logo.png" className="w-8 h-8 object-contain" alt="SportFi Logo" />
           </div>
-          <div className="flex flex-col">
-            <span className="text-lg font-black tracking-tighter text-slate-900 leading-none">SportFi</span>
-            <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest mt-1">Match Center</span>
+          <div className="flex flex-col text-left">
+            <span className="text-lg font-black tracking-tight text-slate-900 leading-none lowercase">
+              sportfi<span className="text-emerald-600 font-medium">kit</span>
+            </span>
+            <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest mt-1">
+              Match Center
+            </span>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -55,18 +59,20 @@ function App() {
         <section>
           <div className="flex items-center gap-2 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <h2 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.3em]">Featured Market</h2>
+            <h2 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.3em]">
+              Featured Market
+            </h2>
           </div>
           <PredictionCard
-            homeTeam={{ name: "Man City", symbol: "CITY", score: 2 }}
-            awayTeam={{ name: "Real Madrid", symbol: "RMA", score: 1 }}
+            homeTeam={{ name: 'Man City', symbol: 'CITY', score: 2 }}
+            awayTeam={{ name: 'Real Madrid', symbol: 'RMA', score: 1 }}
             isLive={true}
             matchStatus="74'"
             predictionTitle="Full Time Result"
             options={[
-              { label: "Home", odds: "1.45" },
-              { label: "Draw", odds: "3.20" },
-              { label: "Away", odds: "5.50" }
+              { label: 'Home', odds: '1.45' },
+              { label: 'Draw', odds: '3.20' },
+              { label: 'Away', odds: '5.50' },
             ]}
             onSelect={handlePredict}
           />
@@ -74,7 +80,7 @@ function App() {
 
         {/* Token Gated Content */}
         <section>
-          <FanTokenGate 
+          <FanTokenGate
             tokenAddress="0x1234..." // Placeholder for $CITY Fan Token
             tokenSymbol="CITY"
             minBalance={10}
@@ -84,7 +90,8 @@ function App() {
             <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl">
               <h3 className="text-xl font-black mb-4">Exclusive Analysis</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                Pep's tactical switch in the 65th minute has completely neutralized Madrid's counter-attack. Expect City to sit deeper now.
+                Pep's tactical switch in the 65th minute has completely neutralized Madrid's
+                counter-attack. Expect City to sit deeper now.
               </p>
               <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-100 text-emerald-700 text-xs font-bold">
                 ✓ You have verified access as a $CITY holder.
@@ -99,10 +106,10 @@ function App() {
             matchName="Tournament Finals"
             homeTeam="Man City"
             awayTeam="Real Madrid"
-            totalVolume={parseEther("5240")}
-            homePool={parseEther("3100")}
-            awayPool={parseEther("1800")}
-            drawPool={parseEther("340")}
+            totalVolume={parseEther('5240')}
+            homePool={parseEther('3100')}
+            awayPool={parseEther('1800')}
+            drawPool={parseEther('340')}
             onPlaceWager={(id, amount) => {
               setToastMessage(`Wager of ${amount} CHZ placed on outcome ${id}`);
               setShowToast(true);
@@ -112,7 +119,7 @@ function App() {
 
         {/* Fan Poll */}
         <section>
-          <PollCard 
+          <PollCard
             title="Man of the Match"
             subtitle="Fan Voting"
             totalVotes={12450}
@@ -120,25 +127,27 @@ function App() {
             userVoteId={userVoteId}
             onVote={handleVote}
             options={[
-              { id: 1, label: "Kevin De Bruyne", votes: 5400 },
-              { id: 2, label: "Erling Haaland", votes: 4200 },
-              { id: 3, label: "Vinícius Júnior", votes: 2850 }
+              { id: 1, label: 'Kevin De Bruyne', votes: 5400 },
+              { id: 2, label: 'Erling Haaland', votes: 4200 },
+              { id: 3, label: 'Vinícius Júnior', votes: 2850 },
             ]}
           />
         </section>
       </main>
 
       <footer className="mt-12 mb-8 text-center px-10">
-        <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em] mb-4">Powered by Chiliz Chain</p>
+        <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em] mb-4">
+          Powered by Chiliz Chain
+        </p>
       </footer>
 
       {showToast && (
-        <ActionToast 
+        <ActionToast
           isVisible={showToast}
           status="success"
           title="Success"
-          message={toastMessage} 
-          onClose={() => setShowToast(false)} 
+          message={toastMessage}
+          onClose={() => setShowToast(false)}
         />
       )}
     </SafeAreaWrapper>

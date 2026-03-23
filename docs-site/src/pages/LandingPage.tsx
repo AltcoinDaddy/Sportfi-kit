@@ -1,21 +1,8 @@
 import { Link } from 'react-router-dom';
 import { SportFiLogo } from '../components/SportFiLogo';
-import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useTheme } from '../App';
-import {
-  ArrowRight,
-  Github,
-  Sparkles,
-  SquareTerminal,
-  Layers3,
-  Zap,
-  Cpu,
-  Code2,
-  LayoutDashboard,
-  Sun,
-  Moon,
-} from 'lucide-react';
+import { ArrowRight, Layers3, Zap, Cpu, Code2, Sun, Moon } from 'lucide-react';
 
 const navLinks = [
   { label: 'Guide', to: '/docs' },
