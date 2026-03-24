@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Lock, Wallet } from 'lucide-react';
+import { Lock, Wallet, AlertCircle, ShoppingCart, ChevronRight } from 'lucide-react';
 import { useFanTokenBalance } from '../hooks/useFanTokenBalance.js';
 
 interface FanTokenGateProps {
@@ -17,112 +17,140 @@ interface FanTokenGateProps {
 }
 
 /**
- * FanTokenGate - Premium content gating based on Fan Token ownership.
- * Features "Locker Room" glassmorphism style by default.
+ * FanTokenGate - High-performance content gating for Chiliz Fan Tokens.
+ * Features the "Elite Industrial" design system: high-density data, 
+ * sharp broadcast-ready aesthetics, and optimized token verification.
  */
 export const FanTokenGate: React.FC<FanTokenGateProps> = ({
   tokenAddress,
-  tokenSymbol = "Tokens",
+  tokenSymbol,
   tokenLogo,
   minBalance = 1,
-  label = "Locker Room",
+  label = "Gated Access",
   description,
   loadingFallback,
   unauthorizedFallback,
   children,
   className = ""
 }) => {
-  const { balance, isLoading } = useFanTokenBalance(tokenAddress);
+  const { balance, symbol: hookSymbol, isLoading, isError } = useFanTokenBalance(tokenAddress);
+  const displaySymbol = tokenSymbol || hookSymbol || "CHZ";
   const numericBalance = parseFloat(balance) || 0;
   const progress = Math.min((numericBalance / minBalance) * 100, 100);
 
-  const defaultLoading = (
-    <div className={`h-[500px] flex items-center justify-center bg-[#090e1a] rounded-[3rem] border border-slate-800 ${className}`}>
-      <div className="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin" />
-    </div>
-  );
-
-  const defaultUnauthorized = (
-    <div className={`h-[600px] bg-[#090e1a] flex flex-col text-white relative overflow-hidden rounded-[3rem] border border-white/5 p-10 pt-20 text-center ${className}`}>
-      {/* Premium Glows */}
-      <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-emerald-600/10 to-transparent pointer-events-none" />
-      <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-emerald-600/5 rounded-full blur-[100px] pointer-events-none" />
-      
-      <div className="relative z-10 flex flex-col items-center">
-        <motion.div 
-          animate={{ 
-            rotate: [0, 5, -5, 0],
-            scale: [1, 1.05, 1]
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="w-24 h-24 bg-emerald-500/10 rounded-[2rem] flex items-center justify-center mb-10 border border-emerald-500/20 shadow-[0_0_60px_rgba(16,185,129,0.15)] backdrop-blur-md"
-        >
-          <Lock className="text-emerald-400" size={36} />
-        </motion.div>
-        
-        <h4 className="text-3xl font-black mb-4 tracking-tight drop-shadow-md">{label}</h4>
-        <p className="text-slate-400 text-sm mb-12 leading-relaxed font-medium max-w-[240px] mx-auto">
-          {description || `Hold ${tokenSymbol} to unlock exclusive stadium access.`}
-        </p>
-        
-        <div className="w-full bg-white/5 backdrop-blur-2xl rounded-[2.5rem] p-8 border border-white/10 mb-10 text-left shadow-2xl">
-          <div className="flex items-center gap-5 mb-8">
-            <motion.div 
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 1 }}
-              className="w-16 h-16 bg-white rounded-3xl flex items-center justify-center text-slate-900 font-black text-xs shadow-2xl overflow-hidden shrink-0 border-4 border-white/10"
-            >
-              {tokenLogo ? <img src={tokenLogo} alt={tokenSymbol} className="w-full h-full object-cover" /> : <span className="text-lg">{tokenSymbol.slice(0, 3)}</span>}
-            </motion.div>
-            <div className="flex-1">
-              <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-1.5">Tokens Required</div>
-              <div className="text-2xl font-black tracking-tighter flex items-center gap-2">
-                {minBalance.toFixed(1)} 
-                <span className="text-xs text-emerald-500 font-black bg-emerald-500/10 px-2 py-0.5 rounded-md">{tokenSymbol}</span>
-              </div>
-            </div>
+  if (isLoading) {
+    if (loadingFallback) return <>{loadingFallback}</>;
+    return (
+      <div className={`min-h-[400px] flex items-center justify-center bg-slate-950/50 rounded-2xl border border-slate-800 backdrop-blur-sm ${className}`}>
+        <div className="relative">
+          <div className="w-12 h-12 border-2 border-emerald-500/20 rounded-full" />
+          <div className="absolute inset-0 w-12 h-12 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+          <div className="absolute inset-0 flex items-center justify-center text-[8px] font-black text-emerald-500 uppercase tracking-tighter">
+            SCN
           </div>
-
-          <div className="space-y-3">
-            <div className="h-3 w-full bg-slate-800/50 rounded-full overflow-hidden mb-1 relative border border-white/5">
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 2, ease: "circOut" }}
-                className="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.4)] relative" 
-              >
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent)] animate-[shimmer_2s_infinite]" />
-              </motion.div>
-            </div>
-            <div className="flex justify-between text-[11px] font-black uppercase tracking-widest leading-none">
-              <span className="text-slate-500 italic">{numericBalance.toFixed(1)} Owned</span>
-              <span className="text-emerald-400">{progress.toFixed(0)}% Complete</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="w-full space-y-4">
-          <motion.button 
-            whileHover={{ scale: 1.02, backgroundColor: '#f8fafc' }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full bg-white text-slate-900 rounded-2xl py-5 font-black text-sm flex items-center justify-center gap-3 shadow-2xl shadow-emerald-900/20"
-          >
-            <Wallet size={20} /> Connect Wallet
-          </motion.button>
-          
-          <button className="w-full py-2 text-[10px] font-black uppercase tracking-[0.3em] text-emerald-500/60 hover:text-emerald-400 transition-colors">
-            Buy {tokenSymbol} Tokens
-          </button>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 
-  if (isLoading) return <>{loadingFallback || defaultLoading}</>;
+  if (isError) {
+    return (
+      <div className={`p-8 bg-red-950/20 border-2 border-red-500/30 rounded-2xl backdrop-blur-md flex flex-col items-center gap-4 text-center ${className}`}>
+        <AlertCircle className="text-red-500" size={32} />
+        <div>
+          <h5 className="text-red-400 font-black uppercase tracking-widest text-sm mb-1">Data Stream Interrupted</h5>
+          <p className="text-red-300/60 text-xs font-mono">Failed to verify token ownership.</p>
+        </div>
+      </div>
+    );
+  }
 
   if (numericBalance < minBalance) {
-    return <>{unauthorizedFallback || defaultUnauthorized}</>;
+    return (
+      unauthorizedFallback ? <>{unauthorizedFallback}</> : (
+        <div className={`relative overflow-hidden bg-slate-950 border border-slate-800 rounded-2xl flex flex-col ${className}`}>
+          {/* Elite Industrial Accents */}
+          <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+            <Lock size={120} strokeWidth={1} />
+          </div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-transparent to-transparent opacity-50" />
+          
+          {/* Header Section */}
+          <div className="p-8 border-b border-slate-800/50">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
+              <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Secure Sector</span>
+            </div>
+            <h4 className="text-3xl font-black text-white tracking-tighter uppercase whitespace-nowrap overflow-hidden text-ellipsis">
+              {label}
+            </h4>
+            <p className="text-slate-500 text-xs mt-2 font-medium max-w-[320px]">
+              {description || `System requires ${minBalance} ${displaySymbol} to grant access to this terminal.`}
+            </p>
+          </div>
+
+          {/* Data Section */}
+          <div className="p-8 flex-1 grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-slate-900/30">
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 bg-slate-800 rounded-lg flex items-center justify-center border border-slate-700 overflow-hidden shrink-0">
+                  {tokenLogo ? (
+                    <img src={tokenLogo} alt={displaySymbol} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-xl font-black text-slate-500">{displaySymbol.slice(0, 3)}</span>
+                  )}
+                </div>
+                <div>
+                  <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Authorization Target</div>
+                  <div className="text-xl font-black text-white font-mono tracking-tighter">
+                    {minBalance.toLocaleString()} <span className="text-emerald-500">{displaySymbol}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex justify-between items-end">
+                  <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Ownership Status</span>
+                  <span className="text-xs font-black text-white font-mono">{progress.toFixed(1)}%</span>
+                </div>
+                <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden border border-white/5">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progress}%` }}
+                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                    className="h-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.3)]" 
+                  />
+                </div>
+                <div className="text-[9px] font-black text-slate-500 uppercase tracking-widest flex justify-between">
+                  <span>{numericBalance.toFixed(2)} Owned</span>
+                  <span className="text-emerald-500/50 italic">Required: {minBalance}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full bg-white text-slate-950 rounded-lg py-4 font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 shadow-xl transition-all hover:bg-emerald-50"
+              >
+                <Wallet size={16} /> Link Wallet Terminal
+              </motion.button>
+              
+              <button className="w-full group py-3 rounded-lg border border-slate-800 hover:border-emerald-500/30 flex items-center justify-center gap-2 transition-all">
+                <ShoppingCart size={14} className="text-emerald-500/60 group-hover:text-emerald-500" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-emerald-400">
+                  Acquire {displaySymbol}
+                </span>
+                <ChevronRight size={14} className="text-slate-700 group-hover:text-emerald-500 ml-1 transition-transform group-hover:translate-x-1" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )
+    );
   }
 
   return <>{children}</>;
 };
+
