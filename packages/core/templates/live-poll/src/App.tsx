@@ -48,8 +48,9 @@ function App() {
            <p className="mt-4 text-center text-slate-500">Submitting vote...</p>
         )}
       </div>
-    </SafeAreaWrapper>
-  );
+    </div>
+  </SafeAreaWrapper>
+);
 }
 
 export default App;
