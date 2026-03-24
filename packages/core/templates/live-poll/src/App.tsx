@@ -1,4 +1,6 @@
 import { ConnectButton, SafeAreaWrapper, useSimpleVote } from 'sportfi-kit';
+import { motion, AnimatePresence } from 'framer-motion';
+import { BarChart3, Users, Globe, ChevronRight } from 'lucide-react';
 
 function App() {
   const POLL_CONTRACT = '0x...abc';
@@ -7,110 +9,117 @@ function App() {
   const options = ['Messi', 'Ronaldo', 'Neymar'];
 
   return (
-    <SafeAreaWrapper className="min-h-screen bg-gradient-to-br from-zinc-50 via-white to-emerald-50 text-zinc-800 selection:bg-emerald-500/10">
-      <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-4 py-6 sm:px-6 lg:px-8">
-        <header className="mb-10 flex items-center justify-between gap-4 rounded-3xl border border-white/70 bg-white/80 px-5 py-4 shadow-sm backdrop-blur">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-zinc-200 bg-zinc-50 shadow-sm">
-              <img src="/logo.png" className="h-7 w-7 object-contain" alt="SportFi Logo" />
+    <SafeAreaWrapper className="min-h-screen bg-slate-950 text-slate-200 selection:bg-emerald-500/20 font-sans">
+      <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 py-8">
+        {/* Elite Broadcast Header */}
+        <header className="mb-12 flex items-center justify-between gap-6 border-b border-slate-800 pb-8">
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/5 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+              <img src="/logo.png" className="h-8 w-8 object-contain" alt="SportFi Logo" />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-black tracking-tight text-zinc-950">
-                sportfi<span className="text-emerald-600">kit</span>
+              <span className="text-2xl font-black uppercase tracking-tighter text-white">
+                SPORTFI<span className="text-emerald-500">KIT</span>
               </span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-zinc-400">
-                Live Poll
-              </span>
+              <div className="flex items-center gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500">
+                  LIVE_POLL_TERMINAL
+                </span>
+              </div>
             </div>
           </div>
 
-          <div className="rounded-full border border-zinc-200 bg-white px-1.5 py-1 shadow-sm">
-            <ConnectButton className="rounded-full bg-zinc-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2" />
-          </div>
+          <ConnectButton />
         </header>
 
-        <main className="grid flex-1 gap-6 lg:grid-cols-[1fr_0.9fr]">
-          <section className="rounded-[2rem] border border-white/70 bg-white/85 p-7 shadow-[0_20px_60px_-30px_rgba(24,24,27,0.35)] backdrop-blur sm:p-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-emerald-700">
-              Vote live
+        <main className="grid flex-1 gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+          {/* Main Info Section */}
+          <section className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/50 p-8 lg:p-12">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-transparent to-transparent opacity-30" />
+            
+            <div className="inline-flex items-center gap-2 rounded-md border border-emerald-500/20 bg-emerald-500/5 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-emerald-400">
+              <Globe size={12} /> Active Network
             </div>
 
-            <h1 className="mt-5 text-3xl font-black tracking-tight text-zinc-950 sm:text-4xl lg:text-5xl">
-              Cast your vote for the player of the month.
+            <h1 className="mt-8 text-4xl font-black tracking-tighter text-white sm:text-5xl lg:text-6xl uppercase leading-none">
+              Cast your vote <br />
+              <span className="text-slate-500">for the MVP.</span>
             </h1>
 
-            <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600 sm:text-lg">
-              Pick your favorite star and submit your vote instantly. The poll updates in real time, so every
-              supporter gets a chance to weigh in.
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-400 font-medium">
+              Join the global fan base and influence the outcome in real-time. Secure, transparent, and built on the Chiliz Chain.
             </p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                <div className="text-sm font-semibold text-zinc-500">Poll type</div>
-                <div className="mt-2 text-sm font-bold text-zinc-950">Fan vote</div>
-              </div>
-              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                <div className="text-sm font-semibold text-zinc-500">Status</div>
-                <div className="mt-2 text-sm font-bold text-zinc-950">Live now</div>
-              </div>
-              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                <div className="text-sm font-semibold text-zinc-500">Network</div>
-                <div className="mt-2 text-sm font-bold text-zinc-950">On-chain</div>
-              </div>
+            <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {[
+                { label: 'Poll Type', value: 'Open Fan Vote', icon: Users },
+                { label: 'Status', value: 'Operational', icon: BarChart3 },
+                { label: 'Latency', value: 'On-Chain', icon: Globe },
+              ].map((stat, i) => (
+                <div key={i} className="rounded-xl border border-slate-800 bg-slate-950/50 p-5">
+                  <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">
+                    <stat.icon size={12} className="text-emerald-500" /> {stat.label}
+                  </div>
+                  <div className="text-sm font-black text-white font-mono uppercase tracking-tight">{stat.value}</div>
+                </div>
+              ))}
             </div>
           </section>
 
-          <aside className="rounded-[2rem] border border-emerald-200/70 bg-gradient-to-br from-emerald-600 to-teal-500 p-7 text-white shadow-[0_20px_60px_-30px_rgba(16,185,129,0.5)] sm:p-10">
-            <div className="flex h-full flex-col justify-between gap-6">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-50/80">
-                  Matchday poll
-                </p>
-                <h2 className="mt-4 text-2xl font-black tracking-tight sm:text-3xl">
-                  Vote for Player of the Month 🏆
-                </h2>
-                <p className="mt-4 max-w-sm text-sm leading-6 text-emerald-50/90 sm:text-base">
-                  Supporters can choose from the top contenders and submit their pick in a few taps.
-                </p>
-              </div>
+          {/* Voting Terminal */}
+          <aside className="rounded-3xl border border-slate-800 bg-slate-900 overflow-hidden flex flex-col">
+            <div className="p-8 border-b border-slate-800 bg-slate-950/50">
+              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-500 mb-2">Voting Interface</div>
+              <h2 className="text-2xl font-black text-white tracking-tighter uppercase">Matchday Selection</h2>
+            </div>
+            
+            <div className="p-8 flex-1 space-y-4">
+              {options.map((opt, i) => {
+                const isVoted = isConfirmed && i === 0; // Mocking for demo
+                return (
+                  <motion.button
+                    key={opt}
+                    whileHover={{ x: 4, backgroundColor: 'rgba(255,255,255,0.03)' }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => submitVote(i)}
+                    disabled={isSubmitting || isConfirmed}
+                    className={`group w-full rounded-xl border p-5 text-left transition-all ${
+                      isVoted
+                        ? 'border-emerald-500 bg-emerald-500/10'
+                        : 'border-slate-800 bg-slate-950 hover:border-slate-600'
+                    } disabled:opacity-50`}
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-4">
+                        <span className="text-xs font-mono font-black text-slate-600 group-hover:text-emerald-500">0{i + 1}</span>
+                        <span className={`text-sm font-black uppercase tracking-tight ${isVoted ? 'text-emerald-400' : 'text-white'}`}>
+                          {opt}
+                        </span>
+                      </div>
+                      <ChevronRight size={16} className={`transition-transform group-hover:translate-x-1 ${isVoted ? 'text-emerald-500' : 'text-slate-700'}`} />
+                    </div>
+                  </motion.button>
+                );
+              })}
 
-              <div className="rounded-[1.5rem] bg-white/10 p-4 ring-1 ring-inset ring-white/15 backdrop-blur">
-                <div className="space-y-3">
-                  {options.map((opt, i) => {
-                    const active = isConfirmed;
-                    return (
-                      <button
-                        key={opt}
-                        onClick={() => submitVote(i)}
-                        disabled={isSubmitting || isConfirmed}
-                        className={`w-full rounded-2xl border px-4 py-4 text-left text-sm font-semibold transition ${
-                          active
-                            ? 'border-white/20 bg-white/15 text-white'
-                            : 'border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10'
-                        } disabled:cursor-not-allowed disabled:opacity-70`}
-                      >
-                        <div className="flex items-center justify-between gap-4">
-                          <span>{opt}</span>
-                          <span className="text-xs font-bold uppercase tracking-[0.22em] text-white/70">
-                            {active && i === 0 ? 'Voted' : `0${i + 1}`}
-                          </span>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {isConfirmed ? (
-                  <p className="mt-4 text-center text-sm font-semibold text-emerald-50">
-                    Your vote has been cast! ✅
-                  </p>
-                ) : isSubmitting ? (
-                  <p className="mt-4 text-center text-sm font-medium text-emerald-50/85">Submitting vote...</p>
-                ) : (
-                  <p className="mt-4 text-center text-sm font-medium text-emerald-50/85">
-                    Select an option to submit your vote.
-                  </p>
-                )}
+              <div className="mt-8 rounded-xl bg-slate-950 border border-slate-800 p-6 text-center">
+                <AnimatePresence mode="wait">
+                  {isConfirmed ? (
+                    <motion.p key="success" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs font-black uppercase tracking-widest text-emerald-400">
+                      Transmission Confirmed ✅
+                    </motion.p>
+                  ) : isSubmitting ? (
+                    <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center justify-center gap-3">
+                      <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-bounce" />
+                      <span className="text-xs font-black uppercase tracking-widest text-slate-500 italic">Syncing Data...</span>
+                    </motion.div>
+                  ) : (
+                    <motion.p key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 italic">
+                      Ready for Input
+                    </motion.p>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </aside>
@@ -121,3 +130,4 @@ function App() {
 }
 
 export default App;
+
