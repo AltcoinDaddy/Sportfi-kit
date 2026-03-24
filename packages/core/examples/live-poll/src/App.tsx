@@ -1,43 +1,66 @@
 import { SportFiKitProvider, ConnectButton, SafeAreaWrapper, useSimpleVote } from 'sportfi-kit';
 
 function App() {
-  const POLL_CONTRACT = "0x...abc";
+  // Replace with your deployed SimpleVote contract address
+  const POLL_CONTRACT = "0x0000000000000000000000000000000000000000";
   const { vote, isPending, isSuccess } = useSimpleVote(POLL_CONTRACT);
 
-  const options = ["Messi", "Ronaldo", "Neymar"];
+  const options = ["Lionel Messi", "Cristiano Ronaldo", "Neymar Jr."];
 
   return (
     <SportFiKitProvider config={{ reownProjectId: 'demo' }}>
-      <SafeAreaWrapper className="p-4">
-        <header className="flex justify-between items-center mb-10">
-          <span className="font-bold text-xl text-emerald-600">Fan Vote</span>
+      <SafeAreaWrapper className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col">
+        <header className="flex justify-between items-center px-4 py-4 md:px-6 md:py-6 bg-white border-b border-slate-100 shadow-sm sticky top-0 z-10">
+          <div className="flex flex-col">
+            <span className="text-lg font-black tracking-tight leading-none">Live Poll</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">SportFi Kit</span>
+          </div>
           <ConnectButton />
         </header>
 
-        <div className="max-w-md mx-auto bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
-          <h2 className="text-xl font-bold mb-6">Vote for Player of the Month</h2>
-          
-          <div className="space-y-4">
-            {options.map((opt, i) => (
-              <button
-                key={i}
-                onClick={() => vote(i)}
-                disabled={isPending || isSuccess}
-                className={`w-full p-4 text-left border rounded-lg transition-all ${
-                  isSuccess ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-slate-200 hover:border-emerald-600'
-                }`}
-              >
-                {opt}
-              </button>
-            ))}
-          </div>
+        <main className="flex-1 flex items-center justify-center p-4">
+          <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 mb-4">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h2 className="text-2xl font-bold tracking-tight mb-2">Player of the Month</h2>
+              <p className="text-sm text-slate-500">Cast your vote on the Chiliz Chain. The results are immutable and transparent.</p>
+            </div>
 
-          {isSuccess && (
-            <p className="mt-4 text-center text-emerald-600 font-medium">Your vote has been cast! ✅</p>
-          ) || isPending && (
-             <p className="mt-4 text-center text-slate-500">Submitting vote...</p>
-          )}
-        </div>
+            <div className="space-y-3">
+              {options.map((opt, i) => (
+                <button
+                  key={i}
+                  onClick={() => vote(i)}
+                  disabled={isPending || isSuccess}
+                  className={`w-full p-4 flex items-center justify-between border rounded-xl font-medium transition-all ${
+                    isSuccess
+                      ? 'border-emerald-200 bg-emerald-50 text-emerald-700 opacity-70 cursor-not-allowed'
+                      : isPending
+                        ? 'border-slate-200 bg-slate-50 text-slate-400 cursor-not-allowed'
+                        : 'border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 text-slate-700'
+                  }`}
+                >
+                  <span>{opt}</span>
+                  {isSuccess && <span className="text-emerald-500">✓</span>}
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-6 h-6 text-center">
+              {isSuccess ? (
+                <p className="text-sm text-emerald-600 font-medium animate-fade-in">Your vote has been recorded! 🎉</p>
+              ) : isPending ? (
+                 <p className="text-sm text-slate-500 animate-pulse">Waiting for confirmation...</p>
+              ) : (
+                <p className="text-xs text-slate-400">Requires a connected wallet</p>
+              )}
+            </div>
+          </div>
+        </main>
       </SafeAreaWrapper>
     </SportFiKitProvider>
   );
