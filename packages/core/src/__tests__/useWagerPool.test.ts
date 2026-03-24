@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 
-// Mock wagmi hooks before importing useWagerPool
+// Mock wagmi hooks
 vi.mock('wagmi', () => ({
   useWriteContract: vi.fn(() => ({
     writeContract: vi.fn(),
@@ -15,28 +15,28 @@ vi.mock('wagmi', () => ({
   })),
 }));
 
-import { useWagerPool, WAGER_POOL_ABI } from '../packages/core/src/hooks/useWagerPool';
+import { useWagerPool, WAGER_POOL_ABI } from '../hooks/useWagerPool.js';
 
 describe('useWagerPool', () => {
   it('should export WAGER_POOL_ABI with correct function names', () => {
-    const functionNames = WAGER_POOL_ABI.map(item => item.name);
+    const functionNames = WAGER_POOL_ABI.map((item: any) => item.name);
     expect(functionNames).toContain('placeWager');
     expect(functionNames).toContain('claimWinnings');
     expect(functionNames).toContain('getOutcomeVolume');
   });
 
   it('should have placeWager as payable', () => {
-    const placeWager = WAGER_POOL_ABI.find(item => item.name === 'placeWager');
+    const placeWager = WAGER_POOL_ABI.find((item: any) => item.name === 'placeWager');
     expect(placeWager?.stateMutability).toBe('payable');
   });
 
   it('should have claimWinnings as nonpayable', () => {
-    const claimWinnings = WAGER_POOL_ABI.find(item => item.name === 'claimWinnings');
+    const claimWinnings = WAGER_POOL_ABI.find((item: any) => item.name === 'claimWinnings');
     expect(claimWinnings?.stateMutability).toBe('nonpayable');
   });
 
   it('should have getOutcomeVolume as view', () => {
-    const getOutcomeVolume = WAGER_POOL_ABI.find(item => item.name === 'getOutcomeVolume');
+    const getOutcomeVolume = WAGER_POOL_ABI.find((item: any) => item.name === 'getOutcomeVolume');
     expect(getOutcomeVolume?.stateMutability).toBe('view');
   });
 });

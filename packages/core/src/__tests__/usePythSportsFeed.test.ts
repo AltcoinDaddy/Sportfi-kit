@@ -8,12 +8,12 @@ import { describe, it, expect } from 'vitest';
  */
 describe('usePythSportsFeed module', () => {
   it('should export usePythSportsFeed as a function', async () => {
-    const mod = await import('../packages/core/src/hooks/usePythSportsFeed');
+    const mod = await import('../hooks/usePythSportsFeed.js');
     expect(typeof mod.usePythSportsFeed).toBe('function');
   });
 
   it('should be importable without errors', async () => {
-    const mod = await import('../packages/core/src/hooks/usePythSportsFeed');
+    const mod = await import('../hooks/usePythSportsFeed.js');
     expect(mod).toBeDefined();
     expect(mod.usePythSportsFeed).toBeDefined();
   });

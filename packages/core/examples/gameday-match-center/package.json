@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "sportfi-kit": "file:../packages/core",
+    "sportfi-kit": "file:../..",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

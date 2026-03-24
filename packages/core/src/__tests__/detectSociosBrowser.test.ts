@@ -1,5 +1,5 @@
+import { detectSociosBrowser, closeSociosMiniApp } from '../utils/detectSociosBrowser.js';
 import { describe, it, expect, afterEach, vi } from 'vitest';
-import { detectSociosBrowser, closeSociosMiniApp } from '../packages/core/src/utils/detectSociosBrowser';
 
 describe('detectSociosBrowser', () => {
   const originalUserAgent = navigator.userAgent;

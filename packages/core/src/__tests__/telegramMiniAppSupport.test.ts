@@ -1,5 +1,5 @@
 import { describe, it, expect, afterEach, vi } from 'vitest';
-import { isTelegramMiniApp, getTelegramUser, initTelegramWebApp } from '../packages/core/src/utils/telegramMiniAppSupport';
+import { isTelegramMiniApp, getTelegramUser, initTelegramWebApp } from '../utils/telegramMiniAppSupport.js';
 
 describe('isTelegramMiniApp', () => {
   afterEach(() => {
