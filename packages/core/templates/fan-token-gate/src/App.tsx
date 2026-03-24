@@ -30,9 +30,9 @@ function App() {
           </div>
         </div>
       </FanTokenGate>
-    </div>
-  </SafeAreaWrapper>
-);
+      </div>
+    </SafeAreaWrapper>
+  );
 }
 
 export default App;
