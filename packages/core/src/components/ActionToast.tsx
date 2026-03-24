@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, AlertCircle, Loader2, X, ExternalLink } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Loader2, X, ExternalLink, Activity } from 'lucide-react';
 
 export interface ActionToastProps {
   isVisible: boolean;
@@ -13,8 +13,8 @@ export interface ActionToastProps {
 }
 
 /**
- * ActionToast - A premium notification component for transaction states.
- * Features glassmorphism, animations, and Chiliz Chain explorer links.
+ * ActionToast - High-performance "Elite Industrial" status terminal.
+ * Features technical telemetry icons, sharp broadcast styling, and Chiliz Chain explorer integration.
  */
 export const ActionToast: React.FC<ActionToastProps> = ({
   isVisible,
@@ -36,22 +36,22 @@ export const ActionToast: React.FC<ActionToastProps> = ({
 
   const statusConfig = {
     pending: {
-      icon: <Loader2 className="w-5 h-5 animate-spin text-emerald-500" />,
+      icon: <Loader2 className="w-4 h-4 animate-spin text-emerald-500" />,
       color: 'emerald',
-      bg: 'bg-emerald-50/90',
-      border: 'border-emerald-200/50'
+      bg: 'bg-slate-950',
+      border: 'border-emerald-500/30'
     },
     success: {
-      icon: <CheckCircle2 className="w-5 h-5 text-emerald-600" />,
+      icon: <CheckCircle2 className="w-4 h-4 text-emerald-500" />,
       color: 'emerald',
-      bg: 'bg-emerald-50/90',
-      border: 'border-emerald-200/50'
+      bg: 'bg-slate-950',
+      border: 'border-emerald-500/50'
     },
     error: {
-      icon: <AlertCircle className="w-5 h-5 text-rose-600" />,
+      icon: <AlertCircle className="w-4 h-4 text-rose-500" />,
       color: 'rose',
-      bg: 'bg-rose-50/90',
-      border: 'border-rose-200/50'
+      bg: 'bg-slate-950',
+      border: 'border-rose-500/50'
     }
   };
 
@@ -61,45 +61,60 @@ export const ActionToast: React.FC<ActionToastProps> = ({
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-          className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-[9999] w-[calc(100%-2rem)] max-w-sm ${config.bg} backdrop-blur-xl border ${config.border} p-5 rounded-3xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] flex gap-4 items-start`}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-[9999] w-[calc(100%-2rem)] max-w-sm ${config.bg} border ${config.border} p-6 rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] flex gap-5 items-start relative overflow-hidden`}
         >
-          <div className={`mt-0.5 p-2 rounded-2xl bg-white shadow-sm flex-shrink-0`}>
-            {config.icon}
+          {/* Status Glow Bar */}
+          <div className={`absolute top-0 left-0 h-full w-1 ${status === 'error' ? 'bg-rose-500' : 'bg-emerald-500'} opacity-50`} />
+          
+          <div className="flex-shrink-0 flex flex-col items-center gap-2">
+            <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 shadow-xl">
+              {config.icon}
+            </div>
+            <div className="flex items-center gap-1 opacity-20">
+              <Activity size={8} className="text-slate-500" />
+              <Activity size={8} className="text-slate-500" />
+            </div>
           </div>
           
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-black text-slate-900 tracking-tight mb-1">
+            <div className="flex items-center gap-2 mb-1.5">
+               <span className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] font-mono">Status // {status.toUpperCase()}</span>
+            </div>
+            <h3 className="text-sm font-black text-white tracking-tight uppercase mb-1">
               {title}
             </h3>
             {message && (
-              <p className="text-[11px] font-medium text-slate-500 leading-relaxed truncate">
+              <p className="text-[10px] font-black text-slate-500 leading-relaxed uppercase tracking-widest font-mono line-clamp-2">
                 {message}
               </p>
             )}
             
             {explorerUrl && (
-              <a 
+              <motion.a 
+                whileHover={{ scale: 1.02, backgroundColor: 'rgba(16, 185, 129, 0.1)' }}
                 href={explorerUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 mt-3 text-[10px] font-black uppercase tracking-widest text-emerald-600 hover:text-emerald-700 transition-colors bg-emerald-100/50 px-3 py-1.5 rounded-full"
+                className="inline-flex items-center gap-2 mt-4 text-[9px] font-black uppercase tracking-widest text-emerald-500 bg-emerald-500/5 border border-emerald-500/20 px-3 py-1.5 rounded-md hover:border-emerald-500 transition-all font-mono"
               >
-                View Transaction <ExternalLink size={10} />
-              </a>
+                TX_LOCATE <ExternalLink size={10} />
+              </motion.a>
             )}
           </div>
 
           <button 
             onClick={onClose}
-            className="p-1 rounded-full hover:bg-black/5 transition-colors text-slate-400"
+            className="p-1 px-2 rounded hover:bg-white/5 transition-colors text-slate-600 flex items-center justify-center -mr-2"
           >
-            <X size={16} />
+            <span className="text-[10px] font-black mr-1 font-mono">ESC</span>
+            <X size={14} />
           </button>
         </motion.div>
       )}
     </AnimatePresence>
   );
 };
+

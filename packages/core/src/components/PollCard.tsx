@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, ChevronRight } from 'lucide-react';
+import { CheckCircle2, ChevronRight, Activity, Users } from 'lucide-react';
 
 interface PollOption {
   id: string | number;
@@ -23,12 +23,12 @@ interface PollCardProps {
 }
 
 /**
- * PollCard - Premium UI component for live fan voting.
- * Features progress bar animations and "Matchday MVP" styling.
+ * PollCard - High-performance "Elite Industrial" voting terminal.
+ * Features data-dense telemetry, sharp broadcast styling, and optimized progress tracking.
  */
 export const PollCard: React.FC<PollCardProps> = ({
   title,
-  subtitle = "Match Poll",
+  subtitle = "Fan Decision",
   options,
   onVote,
   hasVoted = false,
@@ -40,44 +40,38 @@ export const PollCard: React.FC<PollCardProps> = ({
 }) => {
   if (isSkeleton) {
     return (
-      <div className={`bg-white rounded-[2.5rem] shadow-lg border border-slate-100 flex flex-col overflow-hidden animate-pulse ${className}`}>
-        <div className="p-8 pb-6">
-          <div className="w-24 h-4 bg-slate-200 rounded-md mb-3" />
-          <div className="w-48 h-8 bg-slate-300 rounded-lg" />
+      <div className={`bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden animate-pulse ${className}`}>
+        <div className="p-8 pb-6 bg-slate-950/50">
+          <div className="w-24 h-3 bg-slate-800 rounded mb-4" />
+          <div className="w-48 h-8 bg-slate-800 rounded" />
         </div>
-        <div className="px-8 pb-8 flex-1 space-y-4">
+        <div className="p-8 space-y-4">
           {[1, 2, 3].map(i => (
-            <div key={i} className="h-16 bg-slate-100 rounded-2xl" />
+            <div key={i} className="h-16 bg-slate-800/50 rounded-lg" />
           ))}
-          <div className="pt-6 border-t border-slate-50 flex justify-between">
-            <div className="w-32 h-4 bg-slate-100 rounded-md" />
-            <div className="w-16 h-4 bg-slate-100 rounded-md" />
-          </div>
-          <div className="h-16 bg-slate-200 rounded-2xl mt-8" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className={`bg-white rounded-[2.5rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] border border-slate-100 flex flex-col overflow-hidden ${className}`}>
-      {/* Header */}
-      <div className="p-8 pb-6">
+    <div className={`relative overflow-hidden bg-slate-950 border border-slate-800 rounded-2xl flex flex-col shadow-2xl ${className}`}>
+      {/* Industrial Accent Header */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-transparent to-transparent opacity-40" />
+      
+      <div className="p-8 pb-6 bg-slate-900/30 border-b border-slate-800/50">
         <div className="flex items-center gap-2 mb-3">
-          <div className="w-5 h-5 rounded-md bg-emerald-100 flex items-center justify-center">
-            <CheckCircle2 className="text-emerald-600" size={12} />
-          </div>
-          <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
+          <Activity className="text-emerald-500" size={14} />
+          <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">
             {subtitle}
           </span>
         </div>
-        <h4 className="text-2xl font-black text-slate-900 tracking-tight leading-tight">
+        <h4 className="text-2xl font-black text-white tracking-tighter uppercase leading-none">
           {title}
         </h4>
       </div>
 
-      {/* Options */}
-      <div className="px-8 pb-8 flex-1 space-y-4">
+      <div className="p-8 flex-1 space-y-4">
         {options.map((opt, i) => {
           const isSelected = hasVoted && userVoteId === opt.id;
           const percentage = totalVotes > 0 ? Math.round((opt.votes / totalVotes) * 100) : 0;
@@ -85,54 +79,57 @@ export const PollCard: React.FC<PollCardProps> = ({
           return (
             <motion.button 
               key={opt.id} 
-              whileHover={!hasVoted ? { scale: 1.01, x: 4 } : {}}
-              whileTap={!hasVoted ? { scale: 0.99 } : {}}
+              whileHover={!hasVoted ? { x: 4, backgroundColor: 'rgba(255,255,255,0.02)' } : {}}
+              whileTap={!hasVoted ? { scale: 0.98 } : {}}
               onClick={() => !hasVoted && onVote(opt.id)}
               disabled={hasVoted || isLoading}
-              className={`w-full text-left p-5 rounded-2xl border transition-all relative overflow-hidden group/opt ${
+              className={`w-full text-left p-5 rounded-xl border transition-all relative overflow-hidden group/opt ${
                 isSelected 
-                  ? 'border-emerald-500 bg-emerald-50/20' 
+                  ? 'border-emerald-500/50 bg-emerald-500/10' 
                   : hasVoted 
-                    ? 'border-slate-100 bg-slate-50/50 opacity-80' 
-                    : 'border-slate-100 bg-white hover:border-emerald-200'
+                    ? 'border-slate-800/50 bg-slate-900/20' 
+                    : 'border-slate-800 bg-slate-950 hover:border-slate-600'
               }`}
             >
               <div className="flex justify-between items-center relative z-10">
                 <div className="flex items-center gap-4">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-black text-xs transition-colors ${
-                    isSelected ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-400 group-hover/opt:bg-emerald-100 group-hover/opt:text-emerald-600'
+                  <div className={`w-8 h-8 rounded-md flex items-center justify-center font-mono font-black text-xs transition-colors ${
+                    isSelected ? 'bg-emerald-500 text-slate-950' : 'bg-slate-900 text-slate-500 group-hover/opt:text-emerald-500'
                   }`}>
-                    {i + 1}
+                    0{i + 1}
                   </div>
-                  <span className={`text-sm font-bold tracking-tight transition-colors ${isSelected ? 'text-slate-900' : 'text-slate-600'}`}>
+                  <span className={`text-sm font-black uppercase tracking-tight transition-colors ${isSelected ? 'text-white' : 'text-slate-400'}`}>
                     {opt.label}
                   </span>
                 </div>
-                <div className="text-right flex items-center gap-2">
-                  <span className={`text-sm font-black italic ${isSelected ? 'text-emerald-600' : 'text-slate-900'}`}>
-                    {hasVoted ? `${percentage}%` : ''}
-                  </span>
+                
+                <div className="flex items-center gap-3">
+                  {hasVoted && (
+                    <span className={`text-sm font-black font-mono ${isSelected ? 'text-emerald-500' : 'text-slate-500'}`}>
+                      {percentage}%
+                    </span>
+                  )}
                   {isSelected && (
-                    <div className="w-5 h-5 rounded-full bg-emerald-600 flex items-center justify-center">
-                      <CheckCircle2 size={10} className="text-white" />
+                    <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center shadow-[0_0_10px_rgba(16,185,129,0.5)]">
+                      <CheckCircle2 size={12} className="text-slate-950" />
                     </div>
                   )}
                 </div>
               </div>
               
               {hasVoted && (
-                <div className="absolute inset-0 bg-slate-100/30">
+                <div className="absolute inset-0 z-0">
                   <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${percentage}%` }}
-                    transition={{ duration: 1.2, ease: "circOut", delay: i * 0.1 }}
-                    className={`h-full ${isSelected ? 'bg-emerald-500/10' : 'bg-slate-200/20'}`} 
+                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
+                    className={`h-full ${isSelected ? 'bg-emerald-500/5' : 'bg-slate-800/10'}`} 
                   />
                   {isSelected && (
                     <motion.div 
                       initial={{ width: 0 }}
                       animate={{ width: `${percentage}%` }}
-                      className="absolute bottom-0 left-0 h-0.5 bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"
+                      className="absolute bottom-0 left-0 h-[1px] bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"
                     />
                   )}
                 </div>
@@ -141,15 +138,15 @@ export const PollCard: React.FC<PollCardProps> = ({
           );
         })}
 
-        {/* Footer info */}
-        <div className="pt-6">
-          <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">
-            <div className="text-slate-400">
-              {totalVotes.toLocaleString()} Votes Cast
+        <div className="pt-6 border-t border-slate-800/50 mt-4">
+          <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-slate-500 font-mono">
+            <div className="flex items-center gap-2">
+              <Users size={12} className="text-slate-600" />
+              {totalVotes.toLocaleString()} Telemetry Points
             </div>
-            <div className={`flex items-center gap-1.5 ${hasVoted ? 'text-slate-400' : 'text-emerald-600'}`}>
-              <div className={`w-1.5 h-1.5 rounded-full ${hasVoted ? 'bg-slate-300' : 'bg-emerald-500 animate-pulse'}`} />
-              {hasVoted ? 'Poll Ended' : 'Active'}
+            <div className={`flex items-center gap-1.5 ${hasVoted ? 'text-slate-700' : 'text-emerald-500'}`}>
+              <div className={`w-1.5 h-1.5 rounded-full ${hasVoted ? 'bg-slate-800' : 'bg-emerald-500 animate-pulse'}`} />
+              {hasVoted ? 'TRANSMISSION_ENDED' : 'LIVE_FEED'}
             </div>
           </div>
           
@@ -158,17 +155,17 @@ export const PollCard: React.FC<PollCardProps> = ({
               <motion.button 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                whileHover={{ scale: 1.02, backgroundColor: '#0f172a' }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => onVote('SUBMIT_CTA')}
                 disabled={isLoading}
-                className="w-full bg-slate-900 text-white rounded-2xl py-5 font-black text-sm mt-8 shadow-2xl transition-all disabled:opacity-50 flex items-center justify-center gap-3 group/btn"
+                className="w-full bg-white text-slate-950 rounded-xl py-5 font-black text-xs uppercase tracking-[0.2em] mt-8 shadow-2xl transition-all disabled:opacity-50 flex items-center justify-center gap-3 group/btn"
               >
-                {isLoading ? 'Processing...' : (
+                {isLoading ? 'Processing Signal...' : (
                   <>
-                    Vote Now
-                    <ChevronRight size={20} className="group-hover/btn:translate-x-1 transition-transform text-emerald-400" />
+                    Cast Decision
+                    <ChevronRight size={16} className="group-hover/btn:translate-x-1.5 transition-transform text-emerald-600" />
                   </>
                 )}
               </motion.button>
@@ -179,3 +176,4 @@ export const PollCard: React.FC<PollCardProps> = ({
     </div>
   );
 };
+
