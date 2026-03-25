@@ -3,7 +3,8 @@ import { SportFiLogo } from '../components/SportFiLogo';
 import { useState } from 'react';
 import { useTheme } from '../App';
 import { Sports3DStack } from '../components/Sports3DStack';
-import { ArrowRight, Layers3, Zap, Cpu, Code2, Sun, Moon } from 'lucide-react';
+import { ArrowRight, Layers3, Zap, Cpu, Code2, Sun, Moon, Heart } from 'lucide-react';
+import { DonationModal } from '../components/DonationModal';
 
 const navLinks = [
   { label: 'Guide', to: '/docs' },
@@ -44,7 +45,10 @@ const featureCards = [
 
 export function LandingPage() {
   const [activeTab, setActiveTab] = useState(installTabs[0]);
+  const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   const { isDark, toggleTheme } = useTheme();
+  
+  const donateAddress = "0xbd237F2C5e2A71eccA15CCBD83a2F7c273316850";
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#0A0A0A] text-zinc-700 dark:text-white font-sans selection:bg-emerald-500/30 flex justify-center transition-colors duration-300">
@@ -226,8 +230,27 @@ export function LandingPage() {
           </div>
         </main>
 
-        <footer className="border-t border-zinc-100 dark:border-white/10 p-8 text-center bg-white dark:bg-[#0A0A0A]">
-          <p className="text-zinc-400 text-sm">
+        <footer className="border-t border-zinc-100 dark:border-white/10 p-12 text-center bg-white dark:bg-[#0A0A0A] flex flex-col items-center gap-6">
+          <button 
+            onClick={() => setIsDonationModalOpen(true)}
+            className="flex flex-col md:flex-row items-center gap-3 md:gap-4 text-zinc-400 dark:text-zinc-500 text-xs font-bold leading-none bg-zinc-50 dark:bg-white/[0.03] px-6 py-3 rounded-full border border-zinc-200 dark:border-white/5 shadow-sm hover:border-emerald-500/30 transition-all hover:scale-105 pointer-events-auto"
+          >
+            <div className="flex items-center gap-2 tracking-widest uppercase">
+              <Heart size={14} className="text-rose-500 fill-rose-500/20" />
+              <span>Donate:</span>
+            </div>
+            <code className="bg-white dark:bg-black/40 px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-white/10 text-emerald-600 dark:text-emerald-400 font-mono text-[11px] break-all md:break-normal tracking-tighter">
+              {donateAddress}
+            </code>
+          </button>
+          
+          <DonationModal 
+            isOpen={isDonationModalOpen} 
+            onClose={() => setIsDonationModalOpen(false)} 
+            address={donateAddress}
+          />
+          
+          <p className="text-zinc-400 dark:text-zinc-500 text-[13px] font-medium tracking-tight">
             © 2026 SportFi Kit. Built for the Chiliz Ecosystem.
           </p>
         </footer>
