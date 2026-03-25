@@ -3,7 +3,7 @@ import { SportFiKitProvider, ConnectButton, SafeAreaWrapper, useSimpleVote } fro
 function App() {
   // Replace with your deployed SimpleVote contract address
   const POLL_CONTRACT = "0x0000000000000000000000000000000000000000";
-  const { vote, isPending, isSuccess } = useSimpleVote(POLL_CONTRACT);
+  const { submitVote, isSubmitting, isConfirmed } = useSimpleVote(POLL_CONTRACT);
 
   const options = ["Lionel Messi", "Cristiano Ronaldo", "Neymar Jr."];
 
@@ -34,26 +34,26 @@ function App() {
               {options.map((opt, i) => (
                 <button
                   key={i}
-                  onClick={() => vote(i)}
-                  disabled={isPending || isSuccess}
+                  onClick={() => submitVote(i)}
+                  disabled={isSubmitting || isConfirmed}
                   className={`w-full p-4 flex items-center justify-between border rounded-xl font-medium transition-all ${
-                    isSuccess
+                    isConfirmed
                       ? 'border-emerald-200 bg-emerald-50 text-emerald-700 opacity-70 cursor-not-allowed'
-                      : isPending
+                      : isSubmitting
                         ? 'border-slate-200 bg-slate-50 text-slate-400 cursor-not-allowed'
                         : 'border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 text-slate-700'
                   }`}
                 >
                   <span>{opt}</span>
-                  {isSuccess && <span className="text-emerald-500">✓</span>}
+                  {isConfirmed && <span className="text-emerald-500">✓</span>}
                 </button>
               ))}
             </div>
 
             <div className="mt-6 h-6 text-center">
-              {isSuccess ? (
+              {isConfirmed ? (
                 <p className="text-sm text-emerald-600 font-medium animate-fade-in">Your vote has been recorded! 🎉</p>
-              ) : isPending ? (
+              ) : isSubmitting ? (
                  <p className="text-sm text-slate-500 animate-pulse">Waiting for confirmation...</p>
               ) : (
                 <p className="text-xs text-slate-400">Requires a connected wallet</p>

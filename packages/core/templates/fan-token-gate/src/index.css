@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@source "../node_modules/sportfi-kit";
+@source "../../../src";
 
 @theme {
   --color-emerald-500: #10b981;

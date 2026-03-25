@@ -5,6 +5,8 @@
   "type": "module",
   "workspaces": [
     "packages/*",
+    "packages/core/templates/*",
+    "packages/core/examples/*",
     "docs-site"
   ],
   "scripts": {

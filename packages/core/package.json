@@ -26,13 +26,6 @@
   "bin": {
     "sportfi-kit": "dist/cli/index.js"
   },
-  "files": [
-    "dist",
-    "templates",
-    "README.md",
-    "LICENSE"
-  ],
-  "author": "SportFi Kit Contributors",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

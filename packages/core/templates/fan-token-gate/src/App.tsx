@@ -100,21 +100,21 @@ function App() {
         {/* Telegram/iOS Style Bottom Tab Bar */}
         <nav className="absolute bottom-0 z-50 w-full bg-white border-t border-gray-200 pb-safe">
           <div className="flex h-[60px] items-center justify-around px-2">
-            <button className="flex h-full flex-1 flex-col items-center justify-center gap-1 text-gray-400 hover:text-emerald-500 transition-colors">
-              <Home size={24} strokeWidth={2} />
-              <span className="text-[10px] font-medium">Home</span>
+            <button className="flex h-full flex-1 flex-col items-center justify-center gap-1 text-slate-500 hover:text-emerald-500 transition-colors">
+              <Home size={22} strokeWidth={2.5} />
+              <span className="text-[10px] font-bold uppercase tracking-widest">Home</span>
             </button>
             <button className="flex h-full flex-1 flex-col items-center justify-center gap-1 text-emerald-500 transition-colors">
-              <LayoutGrid size={24} strokeWidth={2} />
-              <span className="text-[10px] font-medium">Content</span>
+              <LayoutGrid size={22} strokeWidth={2.5} />
+              <span className="text-[10px] font-bold uppercase tracking-widest">Content</span>
             </button>
-            <button className="flex h-full flex-1 flex-col items-center justify-center gap-1 text-gray-400 hover:text-emerald-500 transition-colors">
-              <Wallet size={24} strokeWidth={2} />
-              <span className="text-[10px] font-medium">Wallet</span>
+            <button className="flex h-full flex-1 flex-col items-center justify-center gap-1 text-slate-500 hover:text-emerald-500 transition-colors">
+              <Wallet size={22} strokeWidth={2.5} />
+              <span className="text-[10px] font-bold uppercase tracking-widest">Wallet</span>
             </button>
-            <button className="flex h-full flex-1 flex-col items-center justify-center gap-1 text-gray-400 hover:text-emerald-500 transition-colors">
-              <User size={24} strokeWidth={2} />
-              <span className="text-[10px] font-medium">Profile</span>
+            <button className="flex h-full flex-1 flex-col items-center justify-center gap-1 text-slate-500 hover:text-emerald-500 transition-colors">
+              <User size={22} strokeWidth={2.5} />
+              <span className="text-[10px] font-bold uppercase tracking-widest">Profile</span>
             </button>
           </div>
         </nav>
