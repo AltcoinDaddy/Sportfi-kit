@@ -63,7 +63,7 @@ export const ConnectButton: React.FC<{ className?: string }> = ({ className = ''
           ) : (
             <>
               <Wallet size={14} className="text-emerald-600" />
-              <span className="relative z-10">Link Terminal</span>
+              <span className="relative z-10">Connect Wallet</span>
             </>
           )}
         </motion.button>

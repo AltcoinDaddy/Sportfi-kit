@@ -134,7 +134,7 @@ export const FanTokenGate: React.FC<FanTokenGateProps> = ({
                 whileTap={{ scale: 0.98 }}
                 className="w-full bg-white text-slate-950 rounded-lg py-4 font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 shadow-xl transition-all hover:bg-emerald-50"
               >
-                <Wallet size={16} /> Link Wallet Terminal
+                <Wallet size={16} /> Connect Wallet
               </motion.button>
               
               <button className="w-full group py-3 rounded-lg border border-slate-800 hover:border-emerald-500/30 flex items-center justify-center gap-2 transition-all">
